@@ -1,16 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
+import Navbar from './components/Navbar';
+import {BrowserRouter, Route} from "react-router-dom";
 
 export const StyledApp = styled.div`
-    text-align: center;
 `;
 
 
 function App() {
   return (
-    <StyledApp>
-      <p>Hello World</p>
-    </StyledApp>
+    <BrowserRouter>
+      <StyledApp>
+        <Navbar/>
+      </StyledApp>
+    </BrowserRouter>
   );
 }
 
