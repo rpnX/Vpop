@@ -67,7 +67,7 @@ const Navbar = () => {
         <FixMenu>
             <div className="header-logo">
                 <div className=" logo-image">
-                    <NavLink to="/main">
+                    <NavLink to="/">
                         <img src={logo}
                         alt="Veronika Popkovich"
                         title="Veronika Popkovich"
@@ -79,25 +79,25 @@ const Navbar = () => {
             <div className="header-menu-box">
                 <ul className="menu mod--menu_left">
                     <li id="1" className="menu-item">
-                        <NavLink to="/handdraw" className="menu-href-li">Рисунок от руки</NavLink>
+                        <NavLink className="menu-href-li" to="/handdraw">Рисунок от руки</NavLink>
                     </li>
                     <li id="2" className="menu-item">
-                        <NavLink className="menu-href-li" to="grafdesign">Графический дизайн</NavLink>
+                        <NavLink className="menu-href-li" to="/grafdesign">Графический дизайн</NavLink>
                     </li>
                     <li id="3" className="menu-item">
-                        <NavLink className="menu-href-li" to="stickers">Дизайн наклеек</NavLink>
+                        <NavLink className="menu-href-li" to="/interier">Дизайн Интерьера</NavLink>
                     </li>
                     <li id="4" className="menu-item">
-                        <NavLink className="menu-href-li" to="popularhz">Популярный что то там</NavLink>
+                        <NavLink className="menu-href-li" to="/landscape">Ландшафный Дизайн</NavLink>
                     </li>
                     <li id="5" className="menu-item">
-                        <NavLink className="menu-href-li" to="tz">Т3</NavLink>
+                        <NavLink className="menu-href-li" to="/skills">Навыки</NavLink>
                     </li>
                     <li id="7" className="menu-item">
-                        <NavLink className="menu-href-li" to="about">Обо мне</NavLink>
+                        <NavLink className="menu-href-li" to="/about">Обо мне</NavLink>
                     </li>
                     <li id="8" className="menu-item">
-                        <NavLink className="menu-href-li" to="contact">Контакты</NavLink>
+                        <NavLink className="menu-href-li" to="/contact">Контакты</NavLink>
                     </li>
                 </ul>
             </div>
