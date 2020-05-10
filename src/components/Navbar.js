@@ -4,7 +4,8 @@ import { NavLink } from 'react-router-dom'
 import logo from '../images/logo.png'
 
 export const FixMenu = styled.div`
-
+    position: fixed;
+    top: 0;
     max-width: 300px;
     padding: 50px 0;
 
@@ -47,6 +48,7 @@ export const FixMenu = styled.div`
         color: rgb(41, 41, 41);
         font-size: 13px;
         text-transform: uppercase;
+        line-height:22px;
     }
     .menu-href-li::after {
         content: '';
@@ -60,6 +62,84 @@ export const FixMenu = styled.div`
     .menu-href-li:hover::after {
         transform: scale(1);
     }
+    .menu-btn{
+        display: none;
+    }
+
+    #menu-toggle {
+        opacity: 0;
+    }
+
+    #menu-toggle:checked ~ .menu-btn > span {
+        transform: rotate(45deg);
+    }
+    #menu-toggle:checked ~ .menu-btn > span::before {
+        top: 0;
+        transform: rotate(0);
+    }
+    #menu-toggle:checked ~ .menu-btn > span::after {
+        top: 0;
+        transform: rotate(90deg);
+    }
+    #menu-toggle:checked ~ .menu-box {
+        visibility: visible;
+        left: 0;
+        }
+    .menu-btn > span,
+    .menu-btn > span::before,
+    .menu-btn > span::after {
+        display: block;
+        position: absolute;
+
+        width: 100%;
+        height: 2px;
+
+        background-color: #616161;
+
+        transition-duration: .25s;
+    }
+    .menu-btn > span::before {
+        content: '';
+        top: -8px;
+    }
+    .menu-btn > span::after {
+        content: '';
+        top: 8px;
+    }
+
+
+
+
+    @media screen and (max-width: 1040px) {
+        top: 0;
+        position: relative;
+        max-width: none;
+        padding: 10px 0;
+        .header-menu-box{
+            display: none;
+        }
+        .header-logo{
+            width: 450px;
+            margin: 15px;
+            display: block;
+            text-align: left;
+        }
+        .menu-btn {
+            display: flex;
+            align-items: center;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+
+            width: 26px;
+            height: 26px;
+
+            cursor: pointer;
+            z-index: 1;
+        }
+
+    }
+
 `;
 
 const Navbar = () => {
@@ -76,13 +156,18 @@ const Navbar = () => {
                 </div>
             </div>
 
+            <input id="menu-toggle" type="checkbox" />
+                <label className="menu-btn" for="menu__toggle">
+                <span></span>
+            </label>
+
             <div className="header-menu-box">
                 <ul className="menu mod--menu_left">
                     <li id="1" className="menu-item">
-                        <NavLink className="menu-href-li" to="/handdraw">Рисунок от руки</NavLink>
+                        <NavLink className="menu-href-li" to="/grafdesign">Графический дизайн</NavLink>
                     </li>
                     <li id="2" className="menu-item">
-                        <NavLink className="menu-href-li" to="/grafdesign">Графический дизайн</NavLink>
+                        <NavLink className="menu-href-li" to="/handdraw">Рисунок от руки</NavLink>
                     </li>
                     <li id="3" className="menu-item">
                         <NavLink className="menu-href-li" to="/interier">Дизайн Интерьера</NavLink>
@@ -95,9 +180,6 @@ const Navbar = () => {
                     </li>
                     <li id="7" className="menu-item">
                         <NavLink className="menu-href-li" to="/about">Обо мне</NavLink>
-                    </li>
-                    <li id="8" className="menu-item">
-                        <NavLink className="menu-href-li" to="/contact">Контакты</NavLink>
                     </li>
                 </ul>
             </div>
