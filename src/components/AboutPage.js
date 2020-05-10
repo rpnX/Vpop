@@ -11,8 +11,8 @@ export const StyledAbout = styled.div`
     width: 100%;
 
     .headtext{
-        margin: 30px;
-        font-size:48px;
+        margin: 60px 65px;
+        font-size:36px;
         font-weight: 500;
     }
     .grid {
@@ -44,6 +44,10 @@ export const StyledAbout = styled.div`
 
     @media screen and (max-width: 1040px) {
         margin: 0;
+        .headtext{
+            padding: 15px;
+            margin:0;
+        }
     }
 
 
@@ -54,9 +58,9 @@ const AboutPage = () => {
         <StyledAbout>
             <p className="headtext">Обо мне</p>
             <div className="grid">
-                <div class="grid__item block1">Grid Item 1</div>
-                <div class="grid__item block2">Grid Item 2</div>
-                <div class="grid__item block3">Grid Item 3</div>
+                <div className="grid__item block1">Grid Item 1</div>
+                <div className="grid__item block2">Grid Item 2</div>
+                <div className="grid__item block3">Grid Item 3</div>
             </div>
         </StyledAbout>
     );

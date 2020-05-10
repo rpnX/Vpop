@@ -21,9 +21,7 @@ export const StyledApp = styled.div`
     display: table-row;
     }
 
-
 `;
-
 
 function App() {
   return (

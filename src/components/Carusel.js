@@ -41,13 +41,16 @@ export const StyledCarusel = styled.div`
 
     @media screen and (max-width: 1040px) {
         margin: 0;
+        .headtext{
+            padding: 15px;
+            margin:0;
+        }
     }
 
 
     
 `;
 
-console.log("document-height",document.documentElement.offsetHeight);
 
 class DemoCarousel extends Component {
     render() {

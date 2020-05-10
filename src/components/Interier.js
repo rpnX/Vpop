@@ -10,8 +10,8 @@ export const StyledInterier = styled.div`
     width: 100%;
 
     .headtext{
-        margin: 30px;
-        font-size:48px;
+        margin: 60px 65px;
+        font-size:36px;
         font-weight: 500;
     }
     .grid {
@@ -50,6 +50,10 @@ export const StyledInterier = styled.div`
 
     @media screen and (max-width: 1040px) {
         margin: 0;
+        .headtext{
+            padding: 15px;
+            margin:0;
+        }
     }
 
 
@@ -59,11 +63,11 @@ const Interier = () => {
     return (
     <StyledInterier>
         <p className="headtext">Interier</p>
-            <div class="grid">
-                <div class="grid__item block1">Grid Item 1</div>
-                <div class="grid__item block2">Grid Item 2</div>
-                <div class="grid__item block3">Grid Item 3</div>
-                <div class="grid__item block4">Grid Item 4</div>
+            <div className="grid">
+                <div className="grid__item block1">Grid Item 1</div>
+                <div className="grid__item block2">Grid Item 2</div>
+                <div className="grid__item block3">Grid Item 3</div>
+                <div className="grid__item block4">Grid Item 4</div>
             </div>
     </StyledInterier>
     );

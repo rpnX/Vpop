@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useRef, useState} from 'react'
 import styled from 'styled-components'
 import { NavLink } from 'react-router-dom'
 import logo from '../images/logo.png'
@@ -81,17 +81,14 @@ export const FixMenu = styled.div`
         top: 0;
         transform: rotate(90deg);
     }
-    #menu-toggle:checked ~ .menu-box {
-        visibility: visible;
-        left: 0;
-        }
+    
     .menu-btn > span,
     .menu-btn > span::before,
     .menu-btn > span::after {
         display: block;
         position: absolute;
 
-        width: 100%;
+        width: 45px;
         height: 2px;
 
         background-color: #616161;
@@ -107,29 +104,34 @@ export const FixMenu = styled.div`
         top: 8px;
     }
 
-
-
-
     @media screen and (max-width: 1040px) {
         top: 0;
         position: relative;
         max-width: none;
-        padding: 10px 0;
+        padding: 5px 0;
+
+        #menu-toggle:checked ~ .header-menu-box >.menu {
+            visibility: visible;
+            right: 0;
+        }
         .header-menu-box{
-            display: none;
+
         }
         .header-logo{
-            width: 450px;
-            margin: 15px;
+            width: 400px;
+            margin: 5px;
             display: block;
             text-align: left;
+        }
+        .logo-image{ 
+            max-width: 70%;
         }
         .menu-btn {
             display: flex;
             align-items: center;
             position: fixed;
-            top: 20px;
-            right: 20px;
+            top: 50px;
+            right: 35px;
 
             width: 26px;
             height: 26px;
@@ -137,12 +139,68 @@ export const FixMenu = styled.div`
             cursor: pointer;
             z-index: 1;
         }
+        .menu {
+            display: block;
+            position: fixed;
+            visibility: hidden;
+            top: 0;
+            right: -100%;
 
+            width: 300px;
+            height: 100%;
+
+            margin: 0;
+            padding: 80px 0;
+
+            list-style: none;
+
+            background-color: #ECEFF1;
+            box-shadow: 1px 0px 6px rgba(0, 0, 0, .2);
+
+            transition-duration: .25s;
+            }
+        .header-menu-box{
+            position: absolute;
+            right: 25px;
+        }
+        .menu-href-li{
+            display: block;
+        }
+
+        .menu-item {
+            margin-top: 4px;
+            margin-bottom: 4px;
+            padding: 12px;
+            padding-left: 30px;
+            cursor: pointer;
+            max-width: 100%;
+            align-items: right;
+            vertical-align: bottom;
+            -webkit-text-decoration: none;
+            text-decoration: none;
+            text-align: right;
+            color: rgb(41,41,41);
+            font-size: 13px;
+            text-transform: uppercase;
+            line-height: 22px;
+        }
+        .menu-item:hover {
+            background-color: #CFD8DC;
+        }
+        .iii:active ~ .header-menu-box >.menu {
+            visibility: hiden;
+            right: 0;
+            background-color: red;
+    }
     }
 
 `;
 
+
+
 const Navbar = () => {
+const [isChecked, setIsChecked] = useState(false);
+
     return (
         <FixMenu>
             <div className="header-logo">
@@ -156,29 +214,30 @@ const Navbar = () => {
                 </div>
             </div>
 
-            <input id="menu-toggle" type="checkbox" />
-                <label className="menu-btn" for="menu__toggle">
+            <input id="menu-toggle" type="checkbox" onChange={(event) => setIsChecked(event.currentTarget.checked)}
+        checked={isChecked} />
+                <label className="menu-btn" for="menu-toggle">
                 <span></span>
             </label>
 
             <div className="header-menu-box">
-                <ul className="menu mod--menu_left">
-                    <li id="1" className="menu-item">
+                <ul className="menu menu_left">
+                    <li id="1" className="menu-item" onClick={() => setIsChecked(!isChecked)}>
                         <NavLink className="menu-href-li" to="/grafdesign">Графический дизайн</NavLink>
                     </li>
-                    <li id="2" className="menu-item">
+                    <li id="2" className="menu-item" onClick={() => setIsChecked(!isChecked)}>
                         <NavLink className="menu-href-li" to="/handdraw">Рисунок от руки</NavLink>
                     </li>
-                    <li id="3" className="menu-item">
+                    <li id="3" className="menu-item" onClick={() => setIsChecked(!isChecked)}>
                         <NavLink className="menu-href-li" to="/interier">Дизайн Интерьера</NavLink>
                     </li>
-                    <li id="4" className="menu-item">
+                    <li id="4" className="menu-item" onClick={() => setIsChecked(!isChecked)}>
                         <NavLink className="menu-href-li" to="/landscape">Ландшафный Дизайн</NavLink>
                     </li>
-                    <li id="5" className="menu-item">
+                    <li id="5" className="menu-item" onClick={() => setIsChecked(!isChecked)}>
                         <NavLink className="menu-href-li" to="/skills">Навыки</NavLink>
                     </li>
-                    <li id="7" className="menu-item">
+                    <li id="7" className="menu-item" onClick={() => setIsChecked(!isChecked)}>
                         <NavLink className="menu-href-li" to="/about">Обо мне</NavLink>
                     </li>
                 </ul>
