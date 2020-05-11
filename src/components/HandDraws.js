@@ -1,7 +1,12 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+import { bounceIn, fadeIn } from 'react-animations';
+
+const GridItemAnimation = keyframes`${bounceIn}`;
+const GridAnimation = keyframes`${fadeIn}`;
 
 export const StyledHandDraws = styled.div`
+    
     margin-left:300px;
     width: 100%;
     background-color: rgba(235,235,235,0.8);
@@ -12,6 +17,7 @@ export const StyledHandDraws = styled.div`
         font-weight: 500;
     }
     .grid {
+        animation: 1s ${GridAnimation};
         width: 100%;
         height: 100%;
         display: grid;
@@ -21,6 +27,7 @@ export const StyledHandDraws = styled.div`
         
     }
     .grid__item {
+        animation: 0.5s ${GridItemAnimation};
         transition: 0.5s;
         padding:25px;
         margin: 15px;
@@ -61,17 +68,18 @@ export const StyledHandDraws = styled.div`
     `;
 
     const HandDraws = () => {
+
         return (
             <StyledHandDraws>
                 <p className="headtext">Hand Job</p>
-                <div className="grid">
+                <div className="grid ">
                     <div className="grid__item block1">Grid Item 1</div>
                     <div className="grid__item block2">Grid Item 2</div>
                     <div className="grid__item block3">Grid Item 3</div>
                     <div className="grid__item block4">Grid Item 4</div>
                     <div className="grid__item block5">Grid Item 5</div>
                 </div>
-        </StyledHandDraws>
+            </StyledHandDraws>
     );
 }
 

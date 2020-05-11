@@ -140,6 +140,7 @@ export const FixMenu = styled.div`
             z-index: 1;
         }
         .menu {
+            z-index: 100;
             display: block;
             position: fixed;
             visibility: hidden;
@@ -165,6 +166,7 @@ export const FixMenu = styled.div`
         }
         .menu-href-li{
             display: block;
+            text-align: right;
         }
 
         .menu-item {
@@ -178,14 +180,10 @@ export const FixMenu = styled.div`
             vertical-align: bottom;
             -webkit-text-decoration: none;
             text-decoration: none;
-            text-align: right;
             color: rgb(41,41,41);
             font-size: 13px;
             text-transform: uppercase;
             line-height: 22px;
-        }
-        .menu-item:hover {
-            background-color: #CFD8DC;
         }
         .iii:active ~ .header-menu-box >.menu {
             visibility: hiden;
@@ -200,6 +198,7 @@ export const FixMenu = styled.div`
 
 const Navbar = () => {
 const [isChecked, setIsChecked] = useState(false);
+
 
     return (
         <FixMenu>
@@ -239,6 +238,9 @@ const [isChecked, setIsChecked] = useState(false);
                     </li>
                     <li id="7" className="menu-item" onClick={() => setIsChecked(!isChecked)}>
                         <NavLink className="menu-href-li" to="/about">Обо мне</NavLink>
+                    </li>
+                    <li id="" className="menu-item" onClick={() => setIsChecked(!isChecked)}>
+                        <NavLink className="menu-href-li" to="/test">Test</NavLink>
                     </li>
                 </ul>
             </div>

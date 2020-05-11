@@ -9,6 +9,7 @@ import Interier from './components/Interier'
 import Carusel from './components/Carusel'
 import Landscape from './components/Landscape'
 import Skills from './components/Skills'
+import Test from './components/Test';
 
 
 
@@ -28,6 +29,9 @@ function App() {
     <BrowserRouter>
       <StyledApp>
         <Navbar/>
+        <Route exact path="/">
+          <Carusel />
+        </Route>
         <Route path="/handdraw">
           <HandDraws />
         </Route>
@@ -46,8 +50,8 @@ function App() {
         <Route path="/about">
           <AboutPage />
         </Route>
-        <Route exact path="/">
-          <Carusel />
+        <Route exact path="/test">
+          <Test />
         </Route>
 
       </StyledApp>
