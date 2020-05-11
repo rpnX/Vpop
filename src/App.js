@@ -25,6 +25,7 @@ export const StyledApp = styled.div`
 `;
 
 function App() {
+
   return (
     <BrowserRouter>
       <StyledApp>

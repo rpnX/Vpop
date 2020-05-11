@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import { db } from '../firebase'    
 
 export const StyledInterier = styled.div`
     background-color: rgba(235,235,235,0.8);
@@ -16,14 +17,13 @@ export const StyledInterier = styled.div`
     }
     .grid {
         width: 100%;
-        height: 100%;
+        /* height: 100%; */
         display: grid;
-        grid-template-areas:
-        "a b "
-        "c d ";
+        grid-template-columns: repeat(2, 1fr);
         
     }
     .grid__item {
+        height: 50vh;
         margin: 15px;
         border-radius: 3px;
         background-repeat: no-repeat;
@@ -31,21 +31,24 @@ export const StyledInterier = styled.div`
 
     }
     .block1 {
-        grid-area: a;
+        /* grid-area: a; */
         background-image: url(https://picsum.photos/900/600?q);
     }
     .block2 {
-        grid-area: b;
+        /* grid-area: b; */
         background-image: url(https://picsum.photos/900/600?w);
     }
     .block3 {
-        grid-area: c;
+        /* grid-area: c; */
         background-image: url(https://picsum.photos/900/600?e);
 
     }
     .block4 {
-        grid-area: d;
+        /* grid-area: d; */
         background-image: url(https://picsum.photos/900/600?r);
+    }
+    .block5{
+
     }
 
     @media screen and (max-width: 1040px) {
@@ -56,18 +59,46 @@ export const StyledInterier = styled.div`
         }
     }
 
-
 `;
 
 const Interier = () => {
+    const [state, setState] = useState(null);
+
+    const ggg = async () => {
+        try {
+
+        const  docRef = db.collection("carusel").doc("images");
+
+        docRef.get().then(function(doc) {
+            if (doc.exists) {
+                console.log("Document data:", doc.data());
+                setState(doc.data())
+            } else {
+                console.log("No such document!");
+            }
+        }).catch(function(error) {
+            console.log("Error getting document:", error);
+        })}
+        catch (error) {
+            console.log(error);
+            }
+        }
+
+    useEffect(() => {
+        ggg()
+        }, [])
+    console.log(state)
+
+
     return (
     <StyledInterier>
         <p className="headtext">Interier</p>
             <div className="grid">
-                <div className="grid__item block1">Grid Item 1</div>
-                <div className="grid__item block2">Grid Item 2</div>
-                <div className="grid__item block3">Grid Item 3</div>
-                <div className="grid__item block4">Grid Item 4</div>
+            {(!state)?( <div>loading...</div>
+                ):(
+                    state.img.map((bg,i) =>(
+                        <div key={i} className="grid__item" style={{backgroundImage: 'url(' + bg + ')'}}>Grid Item {i+1}</div>
+                    )))}
             </div>
     </StyledInterier>
     );

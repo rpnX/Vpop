@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react'
+import React, {useState} from 'react'
 import styled from 'styled-components'
 import { NavLink } from 'react-router-dom'
 import logo from '../images/logo.png'
@@ -33,8 +33,8 @@ export const FixMenu = styled.div`
     }
     .menu-item{
         width: auto; 
-        margin-top: 28px;
-        margin-bottom: 28px;
+        margin-top: 2px;
+        margin-bottom: 2px;
         overflow: hidden;
         line-height: normal;
     }
@@ -42,13 +42,18 @@ export const FixMenu = styled.div`
         cursor: pointer;
         max-width: 100%;
         vertical-align: bottom;
-        display: inline-block;
+        display: block;
         text-decoration: none;
         text-align: left;
         color: rgb(41, 41, 41);
         font-size: 13px;
         text-transform: uppercase;
         line-height:22px;
+        border: 10px solid #f5f5f5;
+    }
+    .activelink{
+        background-color: rgba(235,235,235,0.8);
+        border: 10px solid rgb(235, 235, 235);
     }
     .menu-href-li::after {
         content: '';
@@ -127,20 +132,19 @@ export const FixMenu = styled.div`
             max-width: 70%;
         }
         .menu-btn {
+            z-index:100;
             display: flex;
             align-items: center;
             position: fixed;
             top: 50px;
             right: 35px;
-
             width: 26px;
             height: 26px;
 
             cursor: pointer;
-            z-index: 1;
         }
         .menu {
-            z-index: 100;
+            z-index: 50;
             display: block;
             position: fixed;
             visibility: hidden;
@@ -155,7 +159,7 @@ export const FixMenu = styled.div`
 
             list-style: none;
 
-            background-color: #ECEFF1;
+            background-color: #f5f5f5;
             box-shadow: 1px 0px 6px rgba(0, 0, 0, .2);
 
             transition-duration: .25s;
@@ -215,32 +219,32 @@ const [isChecked, setIsChecked] = useState(false);
 
             <input id="menu-toggle" type="checkbox" onChange={(event) => setIsChecked(event.currentTarget.checked)}
         checked={isChecked} />
-                <label className="menu-btn" for="menu-toggle">
+                <label className="menu-btn" htmlFor="menu-toggle">
                 <span></span>
             </label>
 
             <div className="header-menu-box">
                 <ul className="menu menu_left">
                     <li id="1" className="menu-item" onClick={() => setIsChecked(!isChecked)}>
-                        <NavLink className="menu-href-li" to="/grafdesign">Графический дизайн</NavLink>
+                        <NavLink className="menu-href-li" activeClassName="activelink" to="/grafdesign">Графический дизайн</NavLink>
                     </li>
                     <li id="2" className="menu-item" onClick={() => setIsChecked(!isChecked)}>
-                        <NavLink className="menu-href-li" to="/handdraw">Рисунок от руки</NavLink>
+                        <NavLink className="menu-href-li" activeClassName="activelink" to="/handdraw">Рисунок от руки</NavLink>
                     </li>
                     <li id="3" className="menu-item" onClick={() => setIsChecked(!isChecked)}>
-                        <NavLink className="menu-href-li" to="/interier">Дизайн Интерьера</NavLink>
+                        <NavLink className="menu-href-li" activeClassName="activelink" to="/interier">Дизайн Интерьера</NavLink>
                     </li>
                     <li id="4" className="menu-item" onClick={() => setIsChecked(!isChecked)}>
-                        <NavLink className="menu-href-li" to="/landscape">Ландшафный Дизайн</NavLink>
+                        <NavLink className="menu-href-li" activeClassName="activelink" to="/landscape">Ландшафный Дизайн</NavLink>
                     </li>
                     <li id="5" className="menu-item" onClick={() => setIsChecked(!isChecked)}>
-                        <NavLink className="menu-href-li" to="/skills">Навыки</NavLink>
+                        <NavLink className="menu-href-li" activeClassName="activelink" to="/skills">Навыки</NavLink>
                     </li>
                     <li id="7" className="menu-item" onClick={() => setIsChecked(!isChecked)}>
-                        <NavLink className="menu-href-li" to="/about">Обо мне</NavLink>
+                        <NavLink className="menu-href-li" activeClassName="activelink" to="/about">Обо мне</NavLink>
                     </li>
                     <li id="" className="menu-item" onClick={() => setIsChecked(!isChecked)}>
-                        <NavLink className="menu-href-li" to="/test">Test</NavLink>
+                        <NavLink className="menu-href-li" activeClassName="activelink" to="/test">Test</NavLink>
                     </li>
                 </ul>
             </div>

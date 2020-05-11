@@ -1,7 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import "react-responsive-carousel/lib/styles/carousel.min.css";
-import "react-responsive-carousel/lib/styles/carousel.css";
+import { db } from '../firebase'
 
 
 
@@ -47,18 +46,21 @@ export const StyledCarusel = styled.div`
         }
     }
 
-
-    
 `;
 
 
-class DemoCarousel extends Component {
-    render() {
+const  Carousel = () => {
+
+    db.collection("projects").get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            console.log(`${doc.id} => ${doc.data()}`);
+        });
+    });
         return (
             <StyledCarusel >
                 <div id="carouselExampleControls" className="carousel slide" data-ride="carousel">
-                    <ol class="carousel-indicators">
-                        <li data-target="#carouselExampleControls" data-slide-to="0" class="active"></li>
+                    <ol className="carousel-indicators">
+                        <li data-target="#carouselExampleControls" data-slide-to="0" className="active"></li>
                         <li data-target="#carouselExampleControls" data-slide-to="1"></li>
                         <li data-target="#carouselExampleControls" data-slide-to="2"></li>
                         <li data-target="#carouselExampleControls" data-slide-to="3"></li>
@@ -105,7 +107,6 @@ class DemoCarousel extends Component {
             
         );
     }
-};
 
 
 // const Carusel = () => {
@@ -116,4 +117,4 @@ class DemoCarousel extends Component {
 //     );
 // }   
 
-export default DemoCarousel
+export default Carousel

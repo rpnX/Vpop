@@ -16,14 +16,12 @@ export const StyledLandscape = styled.div`
     }
     .grid {
         width: 100%;
-        height: 100%;
         display: grid;
-        grid-template-areas:
-        "a b "
-        "c d ";
+        grid-template-columns: repeat(2, 1fr);
         
     }
     .grid__item {
+        height: 50vh;
         margin: 15px;
         border-radius: 3px;
         background-repeat: no-repeat;
@@ -31,20 +29,16 @@ export const StyledLandscape = styled.div`
 
     }
     .block1 {
-        grid-area: a;
         background-image: url(https://picsum.photos/900/600?j);
     }
     .block2 {
-        grid-area: b;
         background-image: url(https://picsum.photos/900/600?k);
     }
     .block3 {
-        grid-area: c;
         background-image: url(https://picsum.photos/900/600?l);
 
     }
     .block4 {
-        grid-area: d;
         background-image: url(https://picsum.photos/900/600?h);
     }
 

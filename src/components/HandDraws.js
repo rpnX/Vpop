@@ -6,6 +6,17 @@ const GridItemAnimation = keyframes`${bounceIn}`;
 const GridAnimation = keyframes`${fadeIn}`;
 
 export const StyledHandDraws = styled.div`
+
+    @keyframes fadeInDown {
+            0% {
+            opacity: 0;
+            transform: translateY(-20px);
+            }
+            100% {
+            opacity: 1;
+            transform: translateY(0);
+            }
+        }
     
     margin-left:300px;
     width: 100%;
@@ -17,7 +28,8 @@ export const StyledHandDraws = styled.div`
         font-weight: 500;
     }
     .grid {
-        animation: 1s ${GridAnimation};
+        
+        /* animation: 1s ${GridAnimation}; */
         width: 100%;
         height: 100%;
         display: grid;
@@ -27,14 +39,16 @@ export const StyledHandDraws = styled.div`
         
     }
     .grid__item {
-        animation: 0.5s ${GridItemAnimation};
+        /* animation: 0.5s ${GridItemAnimation}; */
+        animation-name: fadeInDown;
+        animation-duration: 1s;
         transition: 0.5s;
         padding:25px;
         margin: 15px;
         border-radius: 3px;
 
     }
-    .block1 {
+    .block1 { 
         grid-area: a;
         background-image: url(https://picsum.photos/640/480?z);
     }

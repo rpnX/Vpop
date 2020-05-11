@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import photoprofile from '../images/aboutphoto.webp'
 
 export const StyledAbout = styled.div`
     background-color: rgba(235,235,235,0.8);
