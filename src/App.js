@@ -9,7 +9,8 @@ import Interier from './components/Interier'
 import Carusel from './components/Carusel'
 import Landscape from './components/Landscape'
 import Skills from './components/Skills'
-import Test from './components/Test';
+import InterierProj from './components/InterierProj';
+import HanddrawsProj from './components/HanddrawsProj';
 
 
 
@@ -30,30 +31,16 @@ function App() {
     <BrowserRouter>
       <StyledApp>
         <Navbar/>
-        <Route exact path="/">
-          <Carusel />
-        </Route>
-        <Route path="/handdraw">
-          <HandDraws />
-        </Route>
-        <Route path="/grafdesign">
-          <GraphDesigne />
-        </Route>
-        <Route path="/interier">
-          <Interier />
-        </Route>
-        <Route path="/landscape">
-          <Landscape />
-        </Route>
-        <Route path="/skills">
-          <Skills />
-        </Route>
-        <Route path="/about">
-          <AboutPage />
-        </Route>
-        <Route exact path="/test">
-          <Test />
-        </Route>
+        <Route exact path="/" component={Carusel} />
+        <Route exact path="/handdraw" component={HandDraws} />
+        <Route exact path="/grafdesign" component={GraphDesigne} />
+        <Route exact path="/interier" component={Interier} />
+        <Route exact path="/landscape" component={Landscape} />
+        <Route exact path="/skills" component={Skills} />
+        <Route exact path="/about" component={AboutPage} />
+        <Route exact path="/interier/:id" component={InterierProj} />
+        <Route exact path="/handdraws/:id" component={HanddrawsProj} />
+
 
       </StyledApp>
     </BrowserRouter>

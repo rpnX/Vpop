@@ -1,9 +1,10 @@
-import React from 'react';
-import styled, { keyframes } from 'styled-components';
-import { bounceIn, fadeIn } from 'react-animations';
+import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
+import { db } from '../firebase'    
+import { NavLink } from 'react-router-dom';
 
-const GridItemAnimation = keyframes`${bounceIn}`;
-const GridAnimation = keyframes`${fadeIn}`;
+// const GridItemAnimation = keyframes`${bounceIn}`;
+// const GridAnimation = keyframes`${fadeIn}`;
 
 export const StyledHandDraws = styled.div`
 
@@ -23,52 +24,52 @@ export const StyledHandDraws = styled.div`
     background-color: rgba(235,235,235,0.8);
     height: 100vh;
     .headtext{
-        margin: 60px 65px;
+        margin: 40px 45px;
         font-size:36px;
         font-weight: 500;
     }
     .grid {
-        
-        /* animation: 1s ${GridAnimation}; */
         width: 100%;
         height: 100%;
         display: grid;
-        grid-template-areas:
-        "a b c"
-        "f d c";
+        grid-template-columns: repeat(3, 1fr);
         
     }
     .grid__item {
-        /* animation: 0.5s ${GridItemAnimation}; */
+        position: relative;
+        height: 50vh;
         animation-name: fadeInDown;
         animation-duration: 1s;
         transition: 0.5s;
         padding:25px;
         margin: 15px;
         border-radius: 3px;
-
     }
-    .block1 { 
-        grid-area: a;
-        background-image: url(https://picsum.photos/640/480?z);
+    .grid__item:hover {
+        box-shadow: 5px 4px 150px 240px rgba(235,235,235,0.5) inset;
+        transition: 0.2s;
     }
-    .block2 {
-        grid-area: b;
-        background-image: url(https://picsum.photos/640/480?x);
-    }
-    .block3 {
-        grid-area: c;
-        background-image: url(https://picsum.photos/1920/1150?c);
-        background-repeat: no-repeat;
-        background-position: center;
-    }
-    .block4 {
-        grid-area: d;
-        background-image: url(https://picsum.photos/640/480?v);
-    }
-    .block5 {
-        grid-area: f;
-        background-image: url(https://picsum.photos/900/480?tb);
+    .item-text{
+        opacity: 0;
+        position: absolute;
+        font-size: 28px;
+        display: block;
+        transition: 0.4s;
+        padding: 22vh 0;
+        margin: auto;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        text-align: center;
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+        }
+    .item-text:hover{
+        opacity: 1;
+        color: black;   
+        transition: 0.4s;
     }
     
     @media screen and (max-width: 1040px) {
@@ -78,20 +79,46 @@ export const StyledHandDraws = styled.div`
             margin:0;
         }
     }
-
     `;
 
     const HandDraws = () => {
+
+        const [state, setState] = useState(null);
+
+        const loadfromdb = async () => {
+            try {
+            const  docRef = db.collection("handdraws").doc("project");
+            docRef.get().then(function(doc) {
+                if (doc.exists) {
+                    console.log("Document data:", doc.data());
+                    setState(doc.data())
+                } else {
+                    console.log("No such document!");
+                }
+            }).catch(function(error) {
+                console.log("Error getting document:", error);
+            })}
+            catch (error) {
+                console.log(error);
+                }
+            }
+    
+        useEffect(() => {
+            loadfromdb()
+            }, [])
+        console.log(state)
 
         return (
             <StyledHandDraws>
                 <p className="headtext">Hand Job</p>
                 <div className="grid ">
-                    <div className="grid__item block1">Grid Item 1</div>
-                    <div className="grid__item block2">Grid Item 2</div>
-                    <div className="grid__item block3">Grid Item 3</div>
-                    <div className="grid__item block4">Grid Item 4</div>
-                    <div className="grid__item block5">Grid Item 5</div>
+                {(!state)?( <div>loading...</div>
+                ):(
+                    state.proj.map((data,i) =>(
+                        <div key={i} className="grid__item" style={{backgroundImage: `url(${data.tumb })`}}>
+                            <NavLink to ={`/interier/${i}`} className="item-text"> { data.headtext } </NavLink>
+                        </div>
+                    )))}
                 </div>
             </StyledHandDraws>
     );

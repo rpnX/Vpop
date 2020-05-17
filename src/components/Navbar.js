@@ -41,7 +41,6 @@ export const FixMenu = styled.div`
     .menu-href-li {
         cursor: pointer;
         max-width: 100%;
-        vertical-align: bottom;
         display: block;
         text-decoration: none;
         text-align: left;
@@ -138,7 +137,7 @@ export const FixMenu = styled.div`
             position: fixed;
             top: 50px;
             right: 35px;
-            width: 26px;
+            width: 45px;
             height: 26px;
 
             cursor: pointer;
@@ -150,18 +149,13 @@ export const FixMenu = styled.div`
             visibility: hidden;
             top: 0;
             right: -100%;
-
             width: 300px;
             height: 100%;
-
             margin: 0;
             padding: 80px 0;
-
             list-style: none;
-
             background-color: #f5f5f5;
             box-shadow: 1px 0px 6px rgba(0, 0, 0, .2);
-
             transition-duration: .25s;
             }
         .header-menu-box{
@@ -220,6 +214,7 @@ const [isChecked, setIsChecked] = useState(false);
             <input id="menu-toggle" type="checkbox" onChange={(event) => setIsChecked(event.currentTarget.checked)}
         checked={isChecked} />
                 <label className="menu-btn" htmlFor="menu-toggle">
+                    <br></br>
                 <span></span>
             </label>
 
@@ -242,9 +237,6 @@ const [isChecked, setIsChecked] = useState(false);
                     </li>
                     <li id="7" className="menu-item" onClick={() => setIsChecked(!isChecked)}>
                         <NavLink className="menu-href-li" activeClassName="activelink" to="/about">Обо мне</NavLink>
-                    </li>
-                    <li id="" className="menu-item" onClick={() => setIsChecked(!isChecked)}>
-                        <NavLink className="menu-href-li" activeClassName="activelink" to="/test">Test</NavLink>
                     </li>
                 </ul>
             </div>

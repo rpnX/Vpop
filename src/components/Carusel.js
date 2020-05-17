@@ -1,36 +1,29 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, { useState, useEffect } from 'react'
+import styled from 'styled-components'
 import { db } from '../firebase'
+import { NavLink } from 'react-router-dom'
+
 
 
 
 export const StyledCarusel = styled.div`
     margin-left:300px;
     width: 100%;
-    .slide1{
-        height: 100%;
-        background-image: url(https://picsum.photos/1920/1080?w);
+    .loadingdiv{
+        height: 100vh;
     }
-    .slide2{
+    .item-text{
+        opacity: 0.5;
+        position: absolute;
+        font-size: 72px;
+        display: block;
+        padding: 45vh 0;
+        margin: auto;
+        text-align: center;
+        margin-left: -150px;
+        width: 100%;
         height: 100%;
-        background-image: url(https://picsum.photos/1920/1080?u);
-    }
-    .slide3{
-        height: 100%;
-        background-image: url(https://picsum.photos/1920/1080?y);
-    }
-    .slide4{
-        height: 100%;
-        background-image: url(https://picsum.photos/1920/1080?t);
-    }
-    .slide5{
-        height: 100%;
-        background-image: url(https://picsum.photos/1920/1080?r);
-    }
-    .slide6{
-        height: 100%;
-        background-image: url(https://picsum.photos/1920/1080?e);
-    }
+        }
     .bbt{
         opacity: 0.5;
     }
@@ -48,16 +41,38 @@ export const StyledCarusel = styled.div`
 
 `;
 
-
 const  Carousel = () => {
 
-    db.collection("projects").get().then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-            console.log(`${doc.id} => ${doc.data()}`);
-        });
-    });
+    const [state, setState] = useState(null);
+
+    const loadfromdb = async () => {
+        try {
+
+        const  docRef = db.collection("prog").doc("carusel");
+
+        docRef.get().then(function(doc) {
+            if (doc.exists) {
+                setState(doc.data())
+            } else {
+                console.log("No such document!");
+            }
+        }).catch(function(error) {
+            console.log("Error getting document:", error);
+        })}
+        catch (error) {
+            console.log(error);
+            }
+        }
+
+    useEffect(() => {
+        loadfromdb()
+        }, [])
+
+
         return (
             <StyledCarusel >
+                {(!state)?( <div className="loadingdiv"><a className="item-text">loading...</a></div>
+                ):(
                 <div id="carouselExampleControls" className="carousel slide" data-ride="carousel">
                     <ol className="carousel-indicators">
                         <li data-target="#carouselExampleControls" data-slide-to="0" className="active"></li>
@@ -69,27 +84,27 @@ const  Carousel = () => {
                     </ol>
                     <div className="carousel-inner bg-info" role="listbox">
                         <div className="carousel-item active">
-                            <div className="d-flex slide1 align-items-center justify-content-center min-vh-100">
+                            <NavLink to={state.links[0]} className="d-flex slide1 align-items-center justify-content-center min-vh-100" style={{backgroundImage: 'url(' + state.img[0] + ')'}}>
+                            </NavLink>
+                        </div>
+                        <div className="carousel-item">
+                            <div className="d-flex slide2 align-items-center justify-content-center min-vh-100" style={{backgroundImage: 'url(' + state.img[1] + ')'}}>
                             </div>
                         </div>
                         <div className="carousel-item">
-                            <div className="d-flex slide2 align-items-center justify-content-center min-vh-100">
+                            <div className="d-flex slide3 align-items-center justify-content-center min-vh-100" style={{backgroundImage: 'url(' + state.img[2] + ')'}}>
                             </div>
                         </div>
                         <div className="carousel-item">
-                            <div className="d-flex slide3 align-items-center justify-content-center min-vh-100">
+                            <div className="d-flex slide4 align-items-center justify-content-center min-vh-100" style={{backgroundImage: 'url(' + state.img[3] + ')'}}>
                             </div>
                         </div>
                         <div className="carousel-item">
-                            <div className="d-flex slide4 align-items-center justify-content-center min-vh-100">
+                            <div className="d-flex slide5 align-items-center justify-content-center min-vh-100" style={{backgroundImage: 'url(' + state.img[4] + ')'}}>
                             </div>
                         </div>
                         <div className="carousel-item">
-                            <div className="d-flex slide5 align-items-center justify-content-center min-vh-100">
-                            </div>
-                        </div>
-                        <div className="carousel-item">
-                            <div className="d-flex slide6 align-items-center justify-content-center min-vh-100">
+                            <div className="d-flex slide6 align-items-center justify-content-center min-vh-100" style={{backgroundImage: 'url(' + state.img[5] + ')'}}>
                             </div>
                         </div>
                     </div>
@@ -101,7 +116,7 @@ const  Carousel = () => {
                     <span className="carousel-control-next-icon bbt" aria-hidden="true"></span>
                     <span className="sr-only">Next</span>
                 </a>
-            </div>
+            </div>)}
             <p>wekfgieughfiuegt</p>
             </StyledCarusel>
             

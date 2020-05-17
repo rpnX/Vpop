@@ -1,0 +1,26 @@
+{
+    "interier": {
+        "proj1": {
+            "headtext": "Project 1",
+            "text": "qqqqqqqqqqq",
+            "img": [
+                "https://picsum.photos/900/600?q",
+                "https://picsum.photos/900/600?w",
+                "https://picsum.photos/900/600?e",
+                "https://picsum.photos/900/600?r"
+            ],
+            "mainimg": "https://picsum.photos/900/600?q"
+        },
+        "proj2": {
+            "headtext": "Project 2",
+            "text": "wwwwwwwwwww",
+            "img": [
+                "https://picsum.photos/900/600?q",
+                "https://picsum.photos/900/600?w",
+                "https://picsum.photos/900/600?e",
+                "https://picsum.photos/900/600?r"
+            ],
+        "mainimg": "https://picsum.photos/900/600?q"
+        }        
+    }   
+}

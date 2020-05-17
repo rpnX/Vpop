@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 
 export const StyledSkills = styled.div`
     background-color: rgba(235,235,235,0.8);
@@ -10,7 +11,7 @@ export const StyledSkills = styled.div`
     width: 100%;
 
     .headtext{
-        margin: 60px 65px;
+        margin: 40px 45px;
         font-size:36px;
         font-weight: 500;
     }
@@ -31,20 +32,20 @@ export const StyledSkills = styled.div`
     }
     .block1 {
         grid-area: a;
-        background-image: url(https://picsum.photos/900/600?a);
+        background-image: url(https://picsum.photos/900/1080?a);
     }
     .block2 {
         grid-area: b;
-        background-image: url(https://picsum.photos/900/600?s);
+        background-image: url(https://picsum.photos/900/1080?s);
     }
     .block3 {
         grid-area: c;
-        background-image: url(https://picsum.photos/900/600?d);
+        background-image: url(https://picsum.photos/900/1080?d);
 
     }
     .block4 {
         grid-area: d;
-        background-image: url(https://picsum.photos/900/600?f);
+        background-image: url(https://picsum.photos/900/1080?f);
     }
 
     
@@ -62,10 +63,18 @@ const Skills = () => {
         <StyledSkills>
             <p className="headtext">Skills</p>
             <div class="grid">
-                <div class="grid__item block1">Grid Item 1</div>
-                <div class="grid__item block2">Grid Item 2</div>
-                <div class="grid__item block3">Grid Item 3</div>
-                <div class="grid__item block4">Grid Item 3</div>
+                <div class="grid__item block1">
+                    <NavLink id="2" to="/skills">Grid Item</NavLink>
+                </div>
+                <div class="grid__item block2">
+                    Grid Item 2
+                </div>
+                <div class="grid__item block3">
+                    Grid Item 3
+                </div>
+                <div class="grid__item block4">
+                    Grid Item 3
+                </div>
             </div>
         </StyledSkills>
     );
