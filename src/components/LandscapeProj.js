@@ -34,12 +34,12 @@ const Test = ( props ) => {
     const loadfromdb = async () => {
         try {
 
-        const  docRef = db.collection("interier").doc("project");
+        const  docRef = db.collection("landscape").doc("project");
 
         docRef.get().then(function(doc) {
             if (doc.exists) {
                 console.log("Document data:", doc.data());
-                setState(doc.data())
+                setState(doc.data())    
             } else {
                 console.log("No such document!");
             }

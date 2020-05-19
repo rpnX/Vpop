@@ -16,8 +16,6 @@ export const StyledLandscape = styled.div`
         }
 
     background-color: rgba(235,235,235,0.8);
-    box-sizing: border-box;
-    display: block;
     height: 100%;
     margin-left: 300px;
     width: 100%;
@@ -28,37 +26,39 @@ export const StyledLandscape = styled.div`
         font-weight: 500;
     }
     .grid {
-        padding: 0 20px;
         width: 100%;
+        height: 100%;
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        
-        
+        grid-template-columns: repeat(2, 1fr); 
     }
     .grid__item {
+        height: 45vh;
         animation-name: fadeInDown;
         animation-duration: 1s;
-        height: 45vh;
-        margin: 15px;
-        border-radius: 3px;
+        position:relative;
         background-repeat: no-repeat;
         background-position: center;
-        position: relative;
-        transition: 0.2s;
-        
+        padding:25px;
+        margin: 15px;
+        border-radius: 3px;
     }
     .grid__item:hover {
         box-shadow: 5px 4px 150px 240px rgba(235,235,235,0.5) inset;
         transition: 0.2s;
     }
     .item-text{
+        text-decoration: none;
         opacity: 0;
         position: absolute;
         font-size: 28px;
         display: block;
         transition: 0.4s;
-        padding: 20vh 0;
+        padding: 50% 0;
         margin: auto;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
         text-align: center;
         width: 100%;
         height: 100%;

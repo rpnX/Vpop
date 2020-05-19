@@ -6,7 +6,7 @@ export const StyledSkills = styled.div`
     background-color: rgba(235,235,235,0.8);
     box-sizing: border-box;
     display: block;
-    height: 100vh;
+    height: 100%;
     margin-left: 300px;
     width: 100%;
 
@@ -19,11 +19,11 @@ export const StyledSkills = styled.div`
         width: 100%;
         height: 100%;
         display: grid;
-        grid-template-areas:
-        "a b c d"
+        grid-template-columns: repeat(5, 1fr); 
         
     }
     .grid__item {
+        height: 35vh;
         margin: 15px;
         border-radius: 3px;
         background-repeat: no-repeat;
@@ -31,21 +31,20 @@ export const StyledSkills = styled.div`
 
     }
     .block1 {
-        grid-area: a;
         background-image: url(https://picsum.photos/900/1080?a);
     }
     .block2 {
-        grid-area: b;
         background-image: url(https://picsum.photos/900/1080?s);
     }
     .block3 {
-        grid-area: c;
         background-image: url(https://picsum.photos/900/1080?d);
 
     }
     .block4 {
-        grid-area: d;
         background-image: url(https://picsum.photos/900/1080?f);
+    }
+    .block5 {
+        background-image: url(https://picsum.photos/900/1080?g);
     }
 
     
@@ -73,6 +72,9 @@ const Skills = () => {
                     Grid Item 3
                 </div>
                 <div class="grid__item block4">
+                    Grid Item 3
+                </div>
+                <div class="grid__item block5">
                     Grid Item 3
                 </div>
             </div>

@@ -2,12 +2,16 @@ import React, {useState} from 'react'
 import styled from 'styled-components'
 import { NavLink } from 'react-router-dom'
 import logo from '../images/logo.png'
+import inst from '../images/inst.png'
+import fb from '../images/fb.png'
+
 
 export const FixMenu = styled.div`
     position: fixed;
     top: 0;
     max-width: 300px;
     padding: 50px 0;
+    height: 100%;
 
     .header-logo{
         width: 300px;
@@ -25,6 +29,7 @@ export const FixMenu = styled.div`
         max-height: 200px;
     }
     img{
+        margin: 0 15px;
         max-width: 100%;
         border: 0;
     }
@@ -91,12 +96,9 @@ export const FixMenu = styled.div`
     .menu-btn > span::after {
         display: block;
         position: absolute;
-
         width: 45px;
         height: 2px;
-
         background-color: #616161;
-
         transition-duration: .25s;
     }
     .menu-btn > span::before {
@@ -107,12 +109,24 @@ export const FixMenu = styled.div`
         content: '';
         top: 8px;
     }
+    .links-box{
+        position: absolute;
+        bottom: 25px;
+        left: 35px;
+    }
+    .links-img{
+        height: 45px;
+        width: 45px;
+        margin: 0 10px;
+                opacity: 0.8;
+    }
 
     @media screen and (max-width: 1040px) {
         top: 0;
         position: relative;
         max-width: none;
         padding: 5px 0;
+        height: 125px;
 
         #menu-toggle:checked ~ .header-menu-box >.menu {
             visibility: visible;
@@ -122,20 +136,20 @@ export const FixMenu = styled.div`
 
         }
         .header-logo{
-            width: 400px;
+            width: 300px;
             margin: 5px;
             display: block;
             text-align: left;
         }
-        .logo-image{ 
-            max-width: 70%;
+        .logo-href{ 
+            margin: 10px;
         }
         .menu-btn {
             z-index:100;
             display: flex;
             align-items: center;
-            position: fixed;
-            top: 50px;
+            position: absolute;
+            top: 37px;
             right: 35px;
             width: 45px;
             height: 26px;
@@ -166,7 +180,6 @@ export const FixMenu = styled.div`
             display: block;
             text-align: right;
         }
-
         .menu-item {
             margin-top: 4px;
             margin-bottom: 4px;
@@ -183,11 +196,14 @@ export const FixMenu = styled.div`
             text-transform: uppercase;
             line-height: 22px;
         }
-        .iii:active ~ .header-menu-box >.menu {
-            visibility: hiden;
-            right: 0;
-            background-color: red;
-    }
+        .links-box{
+            bottom: none;
+            right: 15px;
+            left: unset;
+        }
+        .links-box img{
+            opacity: 0.8;
+        }
     }
 
 `;
@@ -237,9 +253,14 @@ const [isChecked, setIsChecked] = useState(false);
                     </li>
                     <li id="7" className="menu-item" onClick={() => setIsChecked(!isChecked)}>
                         <NavLink className="menu-href-li" activeClassName="activelink" to="/about">Обо мне</NavLink>
-                    </li>
+                    </li><div className="links-box">
+                    <a href="https://getbootstrap.com/docs/4.0/layout/grid/"><img className="links-img" src={inst} /></a>              
+                    <a href="https://getbootstrap.com/docs/4.0/layout/grid/"><img className="links-img" src={fb} /></a>
+                </div>
                 </ul>
+                
             </div>
+            
         </FixMenu>
     );
 }

@@ -9,11 +9,33 @@ export const StyledTest = styled.div`
     height: 100%;
     margin-left: 300px;
     width: 100%;
+    position: relative;
     
     .headtext{
-        margin: 40px 45px;
-        font-size:36px;
+        margin: 15px 15px;
+        font-size: 36px;
         font-weight: 500;
+        text-align: center;
+        max-width: 100%;
+        word-wrap: break-word;
+    }
+    .text{
+        text-align: center;
+        max-width: 100%;
+        word-wrap: break-word;
+        padding: 0 45px;
+        margin-bottom: 25px;
+    }
+    .cbox{
+        margin: 0 150px;
+        margin-bottom: 50px;
+        max-width: 100%;
+        margin-right: 0;
+        margin-left: 0;
+    }
+    .carusel-box{
+        padding: 0;
+
     }
 
     @media screen and (max-width: 1040px) {
@@ -23,6 +45,7 @@ export const StyledTest = styled.div`
             margin:0;
         }
     }
+    
 `;
 
 const Test = ( props ) => {
@@ -34,7 +57,7 @@ const Test = ( props ) => {
     const loadfromdb = async () => {
         try {
 
-        const  docRef = db.collection("interier").doc("project");
+        const  docRef = db.collection("grapphdesign").doc("project");
 
         docRef.get().then(function(doc) {
             if (doc.exists) {
@@ -56,7 +79,6 @@ const Test = ( props ) => {
         }, [])
     
         console.log(state)
-
     return (
         <>
             {(!state)?( <div>loading...</div>

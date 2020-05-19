@@ -11,6 +11,8 @@ import Landscape from './components/Landscape'
 import Skills from './components/Skills'
 import InterierProj from './components/InterierProj';
 import HanddrawsProj from './components/HanddrawsProj';
+import GraphdesignProj from './components/GraphdesignProj';
+import LandscapeProj from './components/LandscapeProj';
 
 
 
@@ -40,6 +42,8 @@ function App() {
         <Route exact path="/about" component={AboutPage} />
         <Route exact path="/interier/:id" component={InterierProj} />
         <Route exact path="/handdraws/:id" component={HanddrawsProj} />
+        <Route exact path="/graphdesigne/:id" component={GraphdesignProj} />
+        <Route exact path="/landscape/:id" component={LandscapeProj} />
 
 
       </StyledApp>

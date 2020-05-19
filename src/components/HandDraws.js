@@ -8,21 +8,22 @@ import { NavLink } from 'react-router-dom';
 
 export const StyledHandDraws = styled.div`
 
-    @keyframes fadeInDown {
-            0% {
-            opacity: 0;
-            transform: translateY(-20px);
-            }
-            100% {
-            opacity: 1;
-            transform: translateY(0);
-            }
+@keyframes fadeInDown {
+        0% {
+        opacity: 0;
+        transform: translateY(-20px);
         }
-    
+        100% {
+        opacity: 1;
+        transform: translateY(0);
+        }
+    }
+
     margin-left:300px;
     width: 100%;
     background-color: rgba(235,235,235,0.8);
-    height: 100vh;
+    height: 100%;
+
     .headtext{
         margin: 40px 45px;
         font-size:36px;
@@ -32,30 +33,31 @@ export const StyledHandDraws = styled.div`
         width: 100%;
         height: 100%;
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        
+        grid-template-columns: repeat(4, 1fr); 
     }
     .grid__item {
-        position: relative;
-        height: 50vh;
+        height: 35vh;
         animation-name: fadeInDown;
         animation-duration: 1s;
-        transition: 0.5s;
-        padding:25px;
+        position:relative;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
         margin: 15px;
         border-radius: 3px;
     }
     .grid__item:hover {
-        box-shadow: 5px 4px 150px 240px rgba(235,235,235,0.5) inset;
+        box-shadow: 5px 4px 150px 240px rgba(235,235,235,0.7) inset;
         transition: 0.2s;
     }
     .item-text{
+        text-decoration: none;
         opacity: 0;
         position: absolute;
         font-size: 28px;
         display: block;
         transition: 0.4s;
-        padding: 22vh 0;
+        padding: 37% 0;
         margin: auto;
         top: 0;
         bottom: 0;
@@ -79,6 +81,25 @@ export const StyledHandDraws = styled.div`
             margin:0;
         }
     }
+    @media screen and (max-width: 860px) {
+        .grid {
+        grid-template-columns: repeat(3, 1fr); 
+        }
+    }
+    @media screen and (max-width: 640px) {
+        .grid {
+        grid-template-columns: repeat(2, 1fr); 
+        }
+    }
+    @media screen and (max-width: 460px) {
+        .grid {
+        grid-template-columns: repeat(1, 1fr); 
+        }
+        .grid__item {
+        height: 45vh;
+        }
+    }
+
     `;
 
     const HandDraws = () => {
@@ -116,7 +137,7 @@ export const StyledHandDraws = styled.div`
                 ):(
                     state.proj.map((data,i) =>(
                         <div key={i} className="grid__item" style={{backgroundImage: `url(${data.tumb })`}}>
-                            <NavLink to ={`/interier/${i}`} className="item-text"> { data.headtext } </NavLink>
+                            <NavLink to ={`/handdraws/${i}`} className="item-text"> { data.headtext } </NavLink>
                         </div>
                     )))}
                 </div>
