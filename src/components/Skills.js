@@ -16,30 +16,34 @@ export const StyledSkills = styled.div`
         font-size:36px;
         font-weight: 500;
     }
-    .box{
+    /* .box{
         display: flex;
         width: 100%;
-    }
+    } */
     .grid { 
         display: grid;
-        grid-gap: 5px;
-        width: 30%;
-        grid-template-columns: repeat(2, 1fr); 
+        grid-gap: 30px;
+        width: 100%;
+        padding:0 60px 20px 60px;
+        grid-template-columns: repeat(10 , 1fr);
     }
     .grid__item {
         height: 0;
-        padding-bottom: 90%;
+        padding-bottom: 100%;
     }
     .textbox{
-        width: 60%;
+        width: 100%;
+        text-align: center;
         padding: 0 10px;
     }
     .skillimg{
-        max-height: 100px;
-        width: auto;
+        max-width: 100%;
+
     }
     .skillhead{
-        font-size: 18px;
+        padding: 5px;
+        margin: auto;
+        font-size: 14px;
         text-align: center;
     }
     .progress{
@@ -65,12 +69,13 @@ export const StyledSkills = styled.div`
         display: unset;
         }
         .grid {
-            padding: 10px;
-            width: 100vw;
+            padding:0 10px 10px 10px;
+            grid-template-columns: repeat(5 , 1fr);
         }
         .textbox{
             width: 100%;
-            text-align: justify;
+            font-size: 12px;
+            text-align: left;
         }
     }
 `;
@@ -82,7 +87,7 @@ const Skills = () => {
     const loadfromdb = async () => {
         try {
 
-        const  docRef = db.collection("main").doc("project");
+        const  docRef = db.collection("main").doc("skills");
 
         docRef.get().then(function(doc) {
             if (doc.exists) {
@@ -103,75 +108,33 @@ const Skills = () => {
         loadfromdb()
         }, [])
     
-        console.log(state)
 
     return (
         <StyledSkills>
             <p className="headtext">Skills</p>
             <div className="box" >
                 <div className="grid gridbox">
-                    <div className="grid__item block2">
-                        <img className="skillimg" src="https://image.flaticon.com/icons/svg/145/145813.svg" alt="skillimg" />
-                        <p className="skillhead" >Corel Draw</p>
-                    </div>
-                    <div className="grid__item block2">
-                        <img className="skillimg" src="https://image.flaticon.com/icons/svg/145/145813.svg" alt="skillimg" />
-                        <p className="skillhead" >Corel Draw</p>
-                    </div>
-                    <div className="grid__item block2">
-                        <img className="skillimg" src="https://image.flaticon.com/icons/svg/145/145813.svg" alt="skillimg" />
-                        <p className="skillhead" >Corel Draw</p>
-                    </div>
-                    <div className="grid__item block2">
-                        <img className="skillimg" src="https://image.flaticon.com/icons/svg/145/145813.svg" alt="skillimg" />
-                        <p className="skillhead" >Corel Draw</p>
-                    </div>
-                    <div className="grid__item block2">
-                        <img className="skillimg" src="https://image.flaticon.com/icons/svg/145/145813.svg" alt="skillimg" />
-                        <p className="skillhead" >Corel Draw</p>
-                    </div>
-                    <div className="grid__item block2">
-                        <img className="skillimg" src="https://image.flaticon.com/icons/svg/145/145813.svg" alt="skillimg" />
-                        <p className="skillhead" >Corel Draw</p>
-                    </div>
-                    {/* <div className="grid__item block2">
-                        <img className="skillimg" src="https://image.flaticon.com/icons/svg/145/145813.svg" alt="skillimg" />
-                        <p className="skillhead" >Corel Draw</p>
-                    </div> */}
+                {(!state)?( <div>loading...</div>
+                    ):(
+                    state.icons.map((data,i) =>(
+                    <div className="grid__item block">
+                        <img className="skillimg" src={data.img}  alt="skillimg" />
+                    {/* <span className="skillhead" >{data.name}</span> */}
+                </div>
+                )))}
                 </div>
                 <div className="textbox">
-
-                    <p>Разработка логотипов и упаковки для продукции СТМ.</p>
-
-                    <p>Создание фирменного стиля для разных по позиционированию брендов.</p>
-
-                    <p>Разработка корпоративного журнала - концепт, макеты страниц.</p>
-
-                    <p>Создание баннеров для оформления соцсетей ВК, FB, Instagram и сайтов.</p>
-
-                    <p>Оформление акций, POSM-продукция.</p>
-
-                    <p>В реализации задач предлагаю решения под обозначенный бюджет.</p>
-
-                    <p>Запуск новых площадей "под ключ": рациональное зонирование на торговый
-                    зал/подсобные площади, комплектация мебелью собственной разработки,
-                    навигация, внутреннее и наружное оформление объекта.</p>
-
-                    <p>Профессиональное понимание специфики проектирования аптек.</p>
-
-                    <p>Планировочные решения для офисов, колл-центра.</p>
-
-                    <p>Согласование проектов на уровне высшего руководства.</p>
-
-                    <p>Курирование подрядных организаций: отделочников, мебельщиков.</p> 
-
-                    <p>В реализации задач предлагаю решения под обозначенный бюджет.</p>
-                </div>   
+                    {(!state)?( <div>loading...</div>
+                        ):(
+                            state.text.map((data,i) =>(
+                                <p>{data}</p>
+                            )))}
+                </div>  
             </div>
         </StyledSkills>
-            );
-        }
-        
+        );
+    }
+
         export default Skills
 
 

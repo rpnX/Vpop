@@ -264,8 +264,8 @@ const [isChecked, setIsChecked] = useState(false);
                     <li id="7" className="menu-item" onClick={() => setIsChecked(!isChecked)}>
                         <NavLink className="menu-href-li" activeClassName="activelink" to="/about">Обо мне</NavLink>
                     </li><div className="links-box">
-                    <a href="https://getbootstrap.com/docs/4.0/layout/grid/"><img className="links-img" src={inst} /></a>              
-                    <a href="https://getbootstrap.com/docs/4.0/layout/grid/"><img className="links-img" src={fb} /></a>
+                    <a href="https://www.instagram.com/veranikapapkovich"><img className="links-img" src={inst} /></a>              
+                    <a href="https://www.facebook.com/veronica.popkovich"><img className="links-img" src={fb} /></a>
                 </div>
                 </ul>
                 

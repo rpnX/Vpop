@@ -27,12 +27,15 @@ export const StyledAbout = styled.div`
         padding: 20px;
         grid-template-columns: 4fr 3fr; 
     }
-    /* .teaxtarea{
-        margin: 20px;
-    } */
+    .teaxtarea{
+        font-size: 14px;
+    }
+    .skillhead{
+        font-size: 16px;
+    }
     .aboutphoto{
         height: auto;
-        max-width: 90%;
+        max-width: 100%;
     }
 
     @media screen and (max-width: 1040px) {
@@ -48,7 +51,12 @@ export const StyledAbout = styled.div`
         }
         .aboutphoto{
         max-width: 100%;
+        }
     }
+    @media screen and (max-width: 460px) {
+        .headtext{
+        font-size:24px;
+        }
     }
 
 `;
@@ -92,23 +100,23 @@ const AboutPage = () => {
                             {state.deviz}
                         </p>
                         <p>
-                            <h5>ДОСТИЖЕНИЯ:</h5>
+                            <h5 className="skillhead">ДОСТИЖЕНИЯ:</h5>
                             {state.dostizeniya}
                         </p>
                         <p>
-                            <h5>КАРЬЕРА:</h5>
+                            <h5 className="skillhead">КАРЬЕРА:</h5>
                             {state.cariera}
                         </p>
                         <p>
-                            <h5>ОБРАЗОВАНИЕ:</h5>
+                            <h5 className="skillhead">ОБРАЗОВАНИЕ:</h5>
                             {state.obrazovanie}
                         </p>
                         <p>
-                            <h5>Дополнительное образование:</h5>
+                            <h5 className="skillhead">Дополнительное образование:</h5>
                             {state.dopobrazovanie}
                         </p>
                         <p>
-                            <h5>Стажировки:</h5>
+                            <h5 className="skillhead">Стажировки:</h5>
                             {state.stazirovki}
                         </p>
                     </div>
