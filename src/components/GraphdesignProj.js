@@ -6,7 +6,7 @@ export const StyledTest = styled.div`
     background-color: rgba(235,235,235,0.8);
     box-sizing: border-box;
     display: block;
-    height: 100%;
+    min-height: 100vh;
     margin-left: 300px;
     width: 100%;
     position: relative;
@@ -35,7 +35,6 @@ export const StyledTest = styled.div`
     }
     .carusel-box{
         padding: 0;
-
     }
 
     @media screen and (max-width: 1040px) {
@@ -57,7 +56,7 @@ const Test = ( props ) => {
     const loadfromdb = async () => {
         try {
 
-        const  docRef = db.collection("grapphdesign").doc("project");
+        const  docRef = db.collection("graphdesigne").doc("project");
 
         docRef.get().then(function(doc) {
             if (doc.exists) {

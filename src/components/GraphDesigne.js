@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { db } from '../firebase'    
 import { NavLink } from 'react-router-dom';
+import Totopbtn from './ToTopBtn'
 
 export const StyledGraphDesigne = styled.div`
 
@@ -18,8 +19,8 @@ export const StyledGraphDesigne = styled.div`
 
     margin-left:300px;
     width: 100%;
-    background-color: rgba(235,235,235,0.8);
-    height: 100%;
+    background-color: #fff;
+    min-height: 100vh;
 
     .headtext{
         margin: 40px 45px;
@@ -28,40 +29,41 @@ export const StyledGraphDesigne = styled.div`
     }
     .grid {
         width: 100%;
-        height: 100%;
         display: grid;
+        grid-gap: 20px;
+        padding: 20px;
         grid-template-columns: repeat(4, 1fr); 
     }
     .grid__item {
-        /* box-shadow: 0px 0px 11px -4px #000000; */
-        box-shadow: 0px 0px 15px -3px #717182;
-        height: 35vh;
+        /* box-shadow: 0px 0px 15px -10px #717182; */
+        height: 0;
+        padding-bottom: 100%;
         animation-name: fadeInDown;
         animation-duration: 1s;
         position:relative;
         background-repeat: no-repeat;
         background-position: center;
         background-size: cover;
-        margin: 15px;
-        border-radius: 3px;
+        transition: 0.4s;
     }
     .grid__item:hover {
         box-shadow: 5px 4px 150px 240px rgba(235,235,235,0.7) inset;
-        transition: 0.2s;
+        transition: 0.4 s;
     }
     .item-text{
+        color: black;
         text-decoration: none;
         opacity: 0;
         position: absolute;
-        font-size: 28px;
-        display: block;
-        transition: 0.4s;
-        padding: 37% 0;
-        margin: auto;
         top: 0;
         bottom: 0;
         left: 0;
         right: 0;
+        font-size: 24px;
+        display: block;
+        transition: 0.4s;
+        padding: 37% 0;
+        margin: auto;
         text-align: center;
         width: 100%;
         height: 100%;
@@ -73,13 +75,33 @@ export const StyledGraphDesigne = styled.div`
         transition: 0.4s;
     }
     
+    
+    @media screen and (max-width: 1367px) {
+        .item-text{
+            font-size: 20px;
+            }
+        }
+
     @media screen and (max-width: 1040px) {
+
         margin: 0;
+
         .headtext{
             padding: 15px;
             margin:0;
         }
+        .btn-up{
+            position: fixed;
+            bottom: 15px;
+            left: 15px;
+            opacity: 0.5;
+        }
+        .btn-upimage{
+            height: 30px;
+            width: 30px;
+        }
     }
+
     @media screen and (max-width: 860px) {
         .grid {
         grid-template-columns: repeat(3, 1fr); 
@@ -94,8 +116,11 @@ export const StyledGraphDesigne = styled.div`
         .grid {
         grid-template-columns: repeat(1, 1fr); 
         }
-        .grid__item {
-        height: 45vh;
+        .item-text{
+            font-size: 24px;
+        }
+        .headtext{
+        font-size:24px;
         }
     }
 
@@ -107,7 +132,7 @@ const GraphDesigne = () => {
 
         const loadfromdb = async () => {
             try {
-            const  docRef = db.collection("grapphdesign").doc("project");
+            const  docRef = db.collection("graphdesigne").doc("project");
             docRef.get().then(function(doc) {
                 if (doc.exists) {
                     console.log("Document data:", doc.data());
@@ -126,7 +151,7 @@ const GraphDesigne = () => {
         useEffect(() => {
             loadfromdb()
             }, [])
-
+        
     return (
         <StyledGraphDesigne>
             <p className="headtext">Графический дизайн</p>
@@ -139,6 +164,7 @@ const GraphDesigne = () => {
                             </div>
                         )))}
                 </div>
+                <Totopbtn /> 
         </StyledGraphDesigne>
     );
 }

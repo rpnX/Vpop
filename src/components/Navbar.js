@@ -10,12 +10,12 @@ export const FixMenu = styled.div`
     position: fixed;
     top: 0;
     max-width: 300px;
-    padding: 50px 0;
+    padding: 55px 0;
     height: 100%;
 
     .header-logo{
         width: 300px;
-        padding: 0 20px;
+        padding: 0 25px;
         display: block;
         text-align: left;
         margin-bottom: 50px;
@@ -29,7 +29,7 @@ export const FixMenu = styled.div`
         max-height: 200px;
     }
     img{
-        margin: 0 15px;
+        margin: 0 25px;
         max-width: 100%;
         border: 0;
     }
@@ -55,11 +55,12 @@ export const FixMenu = styled.div`
         line-height:22px;
         border: 10px solid #f5f5f5;
     }
-    .activelink{
-        background-color: rgba(235,235,235,0.8);
-        border: 10px solid rgb(235, 235, 235);
+    .activelink {
+        background-color: #fff;
+        border: 10px solid #fff;
+        display: block;
     }
-    .menu-href-li::after {
+    /* .menu-href-li::after {
         content: '';
         display: block;
         width: 100%;
@@ -70,6 +71,10 @@ export const FixMenu = styled.div`
     }
     .menu-href-li:hover::after {
         transform: scale(1);
+    } */
+    .menu-href-li:hover {
+        background-color: rgb(221, 221, 221);
+        border: 10px solid rgb(221, 221, 221);
     }
     .menu-btn{
         display: none;
@@ -118,7 +123,13 @@ export const FixMenu = styled.div`
         height: 45px;
         width: 45px;
         margin: 0 10px;
-                opacity: 0.8;
+        opacity: 0.8;
+    }
+    @media screen and (max-width: 1367px) {
+        .links-img{
+        height: 35px;
+        width: 35px;
+        }
     }
 
     @media screen and (max-width: 1040px) {
@@ -126,7 +137,7 @@ export const FixMenu = styled.div`
         position: relative;
         max-width: none;
         padding: 5px 0;
-        height: 125px;
+        height: 105px;
 
         #menu-toggle:checked ~ .header-menu-box >.menu {
             visibility: visible;
@@ -227,8 +238,7 @@ const [isChecked, setIsChecked] = useState(false);
                 </div>
             </div>
 
-            <input id="menu-toggle" type="checkbox" onChange={(event) => setIsChecked(event.currentTarget.checked)}
-        checked={isChecked} />
+            <input id="menu-toggle" type="checkbox" onChange={(event) => setIsChecked(event.currentTarget.checked)} checked={isChecked} />
                 <label className="menu-btn" htmlFor="menu-toggle">
                     <br></br>
                 <span></span>

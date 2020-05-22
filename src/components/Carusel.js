@@ -53,7 +53,7 @@ const  Carousel = () => {
     const loadfromdb = async () => {
         try {
 
-        const  docRef = db.collection("prog").doc("carusel");
+        const  docRef = db.collection("main").doc("project");
 
         docRef.get().then(function(doc) {
             if (doc.exists) {

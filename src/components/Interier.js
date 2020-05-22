@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { db } from '../firebase'    
 import { NavLink } from 'react-router-dom';
+import Totopbtn from './ToTopBtn';
 
 export const StyledInterier = styled.div`
 @keyframes fadeInDown {
@@ -17,8 +18,8 @@ export const StyledInterier = styled.div`
 
     margin-left:300px;
     width: 100%;
-    background-color: rgba(235,235,235,0.8);
-    height: 100%;
+    background-color: #fff;
+    min-height: 100vh;
 
     .headtext{
         margin: 40px 45px;
@@ -26,33 +27,36 @@ export const StyledInterier = styled.div`
         font-weight: 500;
     }
     .grid {
+        padding: 20px;
         width: 100%;
-        height: 100%;
         display: grid;
-        grid-template-columns: repeat(2, 1fr); 
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 20px;
     }
     .grid__item {
-        height: 45vh;
+        height: 0;
+        padding-bottom: 70%;
+        box-shadow: 0px 0px 11px -3px #232323;
         animation-name: fadeInDown;
         animation-duration: 1s;
-        position:relative;
+        position: relative;
         background-repeat: no-repeat;
         background-position: center;
-        margin: 15px;
+        background-size: cover;
         border-radius: 3px;
     }
     .grid__item:hover {
-        box-shadow: 5px 4px 150px 240px rgba(235,235,235,0.5) inset;
+        box-shadow: 5px 4px 150px 340px rgba(235,235,235,0.5) inset;
         transition: 0.2s;
     }
     .item-text{
-        text-decoratio: none;
+        text-decoration: none;
         opacity: 0;
         position: absolute;
         font-size: 28px;
         display: block;
         transition: 0.4s;
-        padding: 28% 0;
+        padding: 32% 0;
         margin: auto;
         top: 0;
         bottom: 0;
@@ -68,13 +72,37 @@ export const StyledInterier = styled.div`
         color: black;   
         transition: 0.4s;
     }
-    
+
+    @media screen and (max-width: 1367px) {
+        .item-text{
+            padding: 28% 0;
+            font-size: 24px;
+        }
+
+
+    }
     @media screen and (max-width: 1040px) {
         margin: 0;
         .headtext{
             padding: 15px;
             margin:0;
         }
+    }
+    @media screen and (max-width: 700px) {
+        .grid {
+            grid-template-columns: repeat(1, 1fr); 
+        }
+    }
+    @media screen and (max-width: 460px) {
+        .grid {
+            grid-template-columns: repeat(1, 1fr); 
+        }
+        .item-text{
+            font-size: 18px;
+        }
+        .headtext{
+        font-size:24px;
+    }
     }
 
 `;
@@ -118,6 +146,7 @@ const Interier = () => {
                         </div>
                     )))}
             </div>
+            <Totopbtn />
     </StyledInterier>
     );
 }

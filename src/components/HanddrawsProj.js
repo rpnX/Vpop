@@ -3,10 +3,10 @@ import styled from 'styled-components';
 import { db } from '../firebase'   
 
 export const StyledTest = styled.div`
-       background-color: rgba(235,235,235,0.8);
+    background-color: rgba(235,235,235,0.8);
     box-sizing: border-box;
     display: block;
-    height: 100%;
+    min-height: 100vh;
     margin-left: 300px;
     width: 100%;
     
@@ -78,7 +78,7 @@ const Test = ( props ) => {
 
     return (
         <>
-             {(!state)?( <div>loading...</div>
+            {(!state)?( <div>loading...</div>
                 ):(
                 <StyledTest>
                     <p className="headtext">{state.proj[id].headtext}</p>
@@ -97,11 +97,11 @@ const Test = ( props ) => {
                                 </ol>
                                 <div className="carousel-inner">
                                     <div className="carousel-item active">
-                                        <img className="d-block w-100" src={state.proj[id].tumb} alt="First slide"></img>
+                                        <img className="d-block w-100" src={state.proj[id].tumb} alt="Slide"></img>
                                     </div>
                                     {(state.proj[id].img)?(state.proj[id].img.map((data,i) =>(
                                         <div className="carousel-item">
-                                            <img className="d-block w-100" src={data} alt="Second slide"></img>
+                                            <img className="d-block w-100" src={data} alt="Slide"></img>
                                         </div>
                                     )) ):( <div></div>)}
                                 </div>

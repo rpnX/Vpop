@@ -6,14 +6,34 @@ export const StyledTest = styled.div`
     background-color: rgba(235,235,235,0.8);
     box-sizing: border-box;
     display: block;
-    height: 100%;
+    min-height: 100vh;
     margin-left: 300px;
     width: 100%;
     
     .headtext{
-        margin: 40px 45px;
-        font-size:36px;
+        margin: 15px 15px;
+        font-size: 36px;
         font-weight: 500;
+        text-align: center;
+        max-width: 100%;
+        word-wrap: break-word;
+    }
+    .text{
+        text-align: center;
+        max-width: 100%;
+        word-wrap: break-word;
+        padding: 0 45px;
+        margin-bottom: 25px;
+    }
+    .cbox{
+        margin: 0 150px;
+        margin-bottom: 50px;
+        max-width: 100%;
+        margin-right: 0;
+        margin-left: 0;
+    }
+    .carusel-box{
+        padding: 0;
     }
 
     @media screen and (max-width: 1040px) {
@@ -21,6 +41,11 @@ export const StyledTest = styled.div`
         .headtext{
             padding: 15px;
             margin:0;
+        }
+    }
+    @media screen and (max-width: 460px) {
+        .headtext{
+        font-size:24px;
         }
     }
 `;
@@ -64,10 +89,10 @@ const Test = ( props ) => {
                 <StyledTest>
                     <p className="headtext">{state.proj[id].headtext}</p>
                     <div className="text col-sm-8 col-md-8">{state.proj[id].text}</div>
-                    <div className="cbox row ">
-                        <div className="text-box col-0 col-sm-0 col-md-3">
+                    <div className="cbox row">
+                        <div className="text-box col-0 col-xl-2">
                         </div>
-                        <div className="carusel-box col-12 col-sm-12 col-md-6">
+                        <div className="carusel-box col-12  col-md-12 col-xl-8">
                             <div id="carouselExampleIndicators" className="carousel slide" data-ride="carousel">
                                 <ol className="carousel-indicators">
                                     <li data-target="#carouselExampleIndicators" data-slide-to="0" className="active"></li>
@@ -98,7 +123,7 @@ const Test = ( props ) => {
                                 ):(<div></div>)}
                             </div>
                         </div>
-                        <div className="text-box col-0 col-sm-0 col-md-3"></div>
+                        <div className="text-box col-0 col-xl-2"></div>
                     </div>
                 </StyledTest>
             )

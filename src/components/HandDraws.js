@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { db } from '../firebase'    
 import { NavLink } from 'react-router-dom';
+import Totopbtn from './ToTopBtn';
 
 // const GridItemAnimation = keyframes`${bounceIn}`;
 // const GridAnimation = keyframes`${fadeIn}`;
@@ -21,8 +22,8 @@ export const StyledHandDraws = styled.div`
 
     margin-left:300px;
     width: 100%;
-    background-color: rgba(235,235,235,0.8);
-    height: 100%;
+    background-color: #fff;
+    min-height: 100vh;
 
     .headtext{
         margin: 40px 45px;
@@ -31,11 +32,11 @@ export const StyledHandDraws = styled.div`
     }
     .grid {
         width: 100%;
-        height: 100%;
         display: grid;
         grid-template-columns: repeat(4, 1fr); 
     }
     .grid__item {
+        /* box-shadow: 0px 0px 15px -4px #717182; */
         height: 35vh;
         animation-name: fadeInDown;
         animation-duration: 1s;
@@ -48,7 +49,7 @@ export const StyledHandDraws = styled.div`
     }
     .grid__item:hover {
         box-shadow: 5px 4px 150px 240px rgba(235,235,235,0.7) inset;
-        transition: 0.2s;
+        transition: 0.3s;
     }
     .item-text{
         text-decoration: none;
@@ -74,11 +75,28 @@ export const StyledHandDraws = styled.div`
         transition: 0.4s;
     }
     
+    @media screen and (max-width: 1367px) {
+        .item-text{
+            font-size: 20px;
+            }
+        }
     @media screen and (max-width: 1040px) {
+
         margin: 0;
+
         .headtext{
             padding: 15px;
             margin:0;
+        }
+        .btn-up{
+            position: fixed;
+            bottom: 15px;
+            left: 15px;
+            opacity: 0.5;
+        }
+        .btn-upimage{
+            height: 30px;
+            width: 30px;
         }
     }
     @media screen and (max-width: 860px) {
@@ -95,8 +113,11 @@ export const StyledHandDraws = styled.div`
         .grid {
         grid-template-columns: repeat(1, 1fr); 
         }
-        .grid__item {
-        height: 45vh;
+        .item-text{
+            font-size: 24px;
+        }
+        .headtext{
+        font-size:24px;
         }
     }
 
@@ -141,6 +162,7 @@ export const StyledHandDraws = styled.div`
                         </div>
                     )))}
                 </div>
+                <Totopbtn />
             </StyledHandDraws>
     );
 }
