@@ -4,9 +4,40 @@ import { NavLink } from 'react-router-dom'
 import logo from '../images/logo.png'
 import inst from '../images/inst.png'
 import fb from '../images/fb.png'
+import mail from '../images/mail.png'
+import phone from '../images/phone.png'
 
 
 export const FixMenu = styled.div`
+
+    @keyframes fadeInRight {
+        0% {
+        transform: translateX(300px);
+        }
+        100% {
+        transform: translateX(0);
+        }
+    }
+    @keyframes fadeOutRight {
+        0% {
+        transform: translateX(0);
+        }
+        100% {
+        transform: translateX(300px);
+        }
+    }
+
+    @keyframes fadeInPhone{
+        0% {
+        opacity: 0;
+        transform: translateY(25px);
+        }
+        100% {
+            opacity: 1;
+        transform: translateY(0);
+        }
+    }
+
     position: fixed;
     top: 0;
     max-width: 300px;
@@ -54,6 +85,9 @@ export const FixMenu = styled.div`
         text-transform: uppercase;
         line-height:22px;
         border: 10px solid #f5f5f5;
+    }
+    .last{
+        padding-bottom: 40px!important;
     }
     .activelink {
         background-color: #fff;
@@ -120,11 +154,23 @@ export const FixMenu = styled.div`
         left: 35px;
     }
     .links-img{
-        height: 45px;
-        width: 45px;
+        height: 40px;
+        width: 40px;
         margin: 0 10px;
         opacity: 0.8;
+        cursor: pointer;
     }
+    .phone{
+        animation-name: fadeInPhone;
+        animation-duration: .6s;
+        text-align: center;
+        text-decoration: none;
+        color: black;
+    }
+    .phonelink{
+        color: black;
+    }
+
     @media screen and (max-width: 1367px) {
         .links-img{
         height: 35px;
@@ -142,6 +188,8 @@ export const FixMenu = styled.div`
         #menu-toggle:checked ~ .header-menu-box >.menu {
             visibility: visible;
             right: 0;
+            animation-name: fadeInRight;
+            animation-duration: .6s;
         }
         .header-menu-box{
 
@@ -168,24 +216,24 @@ export const FixMenu = styled.div`
             cursor: pointer;
         }
         .menu {
+            animation-name: fadeOutRight;
+            animation-duration: .6s;
             z-index: 50;
             display: block;
-            position: fixed;
+            position: absolute;
             visibility: hidden;
-            top: 0;
+            top: -14px;
             right: -100%;
             width: 300px;
-            height: 100%;
             margin: 0;
-            padding: 80px 0;
+            padding: 20px 0 80px 0;
             list-style: none;
             background-color: #f5f5f5;
-            box-shadow: 1px 0px 6px rgba(0, 0, 0, .2);
-            transition-duration: .25s;
+            transition-duration: .6s;
             }
         .header-menu-box{
             position: absolute;
-            right: 25px;
+            right: 0;
         }
         .menu-href-li{
             display: block;
@@ -216,6 +264,18 @@ export const FixMenu = styled.div`
             opacity: 0.8;
         }
     }
+    @media screen and (max-width: 376px) {
+
+        .menu-btn {
+            top: 23px;
+        }
+    }
+    @media screen and (max-width: 374px) {
+
+        .menu-btn {
+            top: 37px;
+        }
+    }
 
 `;
 
@@ -223,6 +283,10 @@ export const FixMenu = styled.div`
 
 const Navbar = () => {
 const [isChecked, setIsChecked] = useState(false);
+const [isShown, setIsShown] = useState(false);
+
+const show = () => {
+    (isShown === true)?(setIsShown(false)):(setIsShown(true))}
 
 
     return (
@@ -261,12 +325,16 @@ const [isChecked, setIsChecked] = useState(false);
                     <li id="5" className="menu-item" onClick={() => setIsChecked(!isChecked)}>
                         <NavLink className="menu-href-li" activeClassName="activelink" to="/skills">Навыки</NavLink>
                     </li>
-                    <li id="7" className="menu-item" onClick={() => setIsChecked(!isChecked)}>
+                    <li id="7" className="menu-item last" onClick={() => setIsChecked(!isChecked)}>
                         <NavLink className="menu-href-li" activeClassName="activelink" to="/about">Обо мне</NavLink>
-                    </li><div className="links-box">
-                    <a href="https://www.instagram.com/veranikapapkovich"><img className="links-img" src={inst} /></a>              
-                    <a href="https://www.facebook.com/veronica.popkovich"><img className="links-img" src={fb} /></a>
-                </div>
+                    </li>
+                    <div className="links-box">
+                    { isShown ? <p className="phone" ><a className="phonelink" href="tel:+375293213076">+375 29 321 30 76</a></p>: null }
+                    <a onClick={show}><img className="links-img" src={phone} alt="link-img"/></a>
+                    <a href="mailto:veronikapopkovich@yandex.ru" target="_blank" ><img className="links-img" src={mail} alt="link-img"/></a>
+                    <a href="https://www.facebook.com/veronica.popkovich" target="_blank" ><img className="links-img" src={fb}alt="link-img"/></a>
+                    <a href="https://www.instagram.com/veranikapapkovich" target="_blank" ><img className="links-img" src={inst} alt="link-img"/></a>              
+                    </div>
                 </ul>
                 
             </div>

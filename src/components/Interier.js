@@ -5,6 +5,7 @@ import { NavLink } from 'react-router-dom';
 import Totopbtn from './ToTopBtn';
 
 export const StyledInterier = styled.div`
+
 @keyframes fadeInDown {
             0% {
             opacity: 0;
@@ -22,9 +23,12 @@ export const StyledInterier = styled.div`
     min-height: 100vh;
 
     .headtext{
-        margin: 40px 45px;
-        font-size:36px;
+        margin-top: 67px;
+        margin-bottom: 47px;
+        margin-left: 40px;
+        font-size:26px;
         font-weight: 500;
+        text-transform: uppercase;
     }
     .grid {
         padding: 20px;
@@ -36,7 +40,6 @@ export const StyledInterier = styled.div`
     .grid__item {
         height: 0;
         padding-bottom: 70%;
-        box-shadow: 0px 0px 11px -3px #232323;
         animation-name: fadeInDown;
         animation-duration: 1s;
         position: relative;
@@ -46,22 +49,24 @@ export const StyledInterier = styled.div`
         border-radius: 3px;
     }
     .grid__item:hover {
-        box-shadow: 5px 4px 150px 340px rgba(235,235,235,0.5) inset;
+        box-shadow: 5px 4px 150px 340px #f5f5f5 inset;
         transition: 0.2s;
     }
     .item-text{
+        color: white;
         text-decoration: none;
         opacity: 0;
         position: absolute;
-        font-size: 28px;
-        display: block;
-        transition: 0.4s;
-        padding: 32% 0;
-        margin: auto;
         top: 0;
         bottom: 0;
         left: 0;
         right: 0;
+        font-size: 16px;
+        text-transform: uppercase;
+        display: block;
+        transition: 0.4s;
+        padding: 43% 0;
+        margin: auto;
         text-align: center;
         width: 100%;
         height: 100%;
@@ -72,20 +77,27 @@ export const StyledInterier = styled.div`
         color: black;   
         transition: 0.4s;
     }
+    .mobile-text{
+            margin: 5px 0;
+            display: none;
+            animation-name: fadeInDown;
+            animation-duration: 1s;
+        }
 
     @media screen and (max-width: 1367px) {
         .item-text{
             padding: 28% 0;
             font-size: 24px;
         }
-
-
     }
     @media screen and (max-width: 1040px) {
         margin: 0;
         .headtext{
             padding: 15px;
             margin:0;
+        }
+        .mobile-text{
+            display: block;
         }
     }
     @media screen and (max-width: 700px) {
@@ -102,7 +114,7 @@ export const StyledInterier = styled.div`
         }
         .headtext{
         font-size:24px;
-    }
+        }
     }
 
 `;
@@ -131,19 +143,18 @@ const Interier = () => {
     useEffect(() => {
         loadfromdb()
         }, [])
-    console.log(state)
-    // console.log(state)
 
     return (
     <StyledInterier>
-        <p className="headtext">Interier</p>
+        <p className="headtext">Дизайн интерьера</p>
             <div className="grid">
             {(!state)?( <div>loading...</div>
                 ):(
-                    state.proj.map((data,i) =>(
+                    state.proj.slice(0).reverse().map((data,i) =>(<div>
                         <div key={i} className="grid__item" style={{backgroundImage: `url(${data.tumb })`}}>
-                            <NavLink to ={`/interier/${i}`} className="item-text"> { data.headtext } </NavLink>
+                            <NavLink to ={`/interier/${(state.proj.length - 1) - i}`} className="item-text"> { data.headtext } </NavLink>
                         </div>
+                        <p className="mobile-text"> { data.headtext } </p></div> 
                     )))}
             </div>
             <Totopbtn />

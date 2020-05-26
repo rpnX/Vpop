@@ -26,44 +26,50 @@ export const StyledHandDraws = styled.div`
     min-height: 100vh;
 
     .headtext{
-        margin: 40px 45px;
-        font-size:36px;
+        margin-top: 67px;
+        margin-bottom: 47px;
+        margin-left: 40px;
+        font-size:26px;
         font-weight: 500;
+        text-transform: uppercase;
     }
     .grid {
         width: 100%;
         display: grid;
+        grid-gap: 20px;
+        padding: 20px;
         grid-template-columns: repeat(4, 1fr); 
     }
     .grid__item {
-        /* box-shadow: 0px 0px 15px -4px #717182; */
-        height: 35vh;
+        height: 0;
+        padding-bottom: 100%;
         animation-name: fadeInDown;
         animation-duration: 1s;
         position:relative;
         background-repeat: no-repeat;
         background-position: center;
         background-size: cover;
-        margin: 15px;
-        border-radius: 3px;
+        transition: 0.4s;
     }
     .grid__item:hover {
-        box-shadow: 5px 4px 150px 240px rgba(235,235,235,0.7) inset;
-        transition: 0.3s;
+        box-shadow: 5px 4px 150px 240px #f5f5f5 inset;
+        transition: 0.4 s;
     }
     .item-text{
+        color: white;
         text-decoration: none;
         opacity: 0;
         position: absolute;
-        font-size: 28px;
-        display: block;
-        transition: 0.4s;
-        padding: 37% 0;
-        margin: auto;
         top: 0;
         bottom: 0;
         left: 0;
         right: 0;
+        font-size: 16px;
+        text-transform: uppercase;
+        display: block;
+        transition: 0.4s;
+        padding: 43% 0;
+        margin: auto;
         text-align: center;
         width: 100%;
         height: 100%;
@@ -74,10 +80,16 @@ export const StyledHandDraws = styled.div`
         color: black;   
         transition: 0.4s;
     }
+    .mobile-text{
+            margin: 5px 0;
+            display: none;
+            animation-name: fadeInDown;
+            animation-duration: 1s;
+        }
     
     @media screen and (max-width: 1367px) {
         .item-text{
-            font-size: 20px;
+            font-size: 16px;
             }
         }
     @media screen and (max-width: 1040px) {
@@ -87,6 +99,7 @@ export const StyledHandDraws = styled.div`
         .headtext{
             padding: 15px;
             margin:0;
+            
         }
         .btn-up{
             position: fixed;
@@ -97,6 +110,9 @@ export const StyledHandDraws = styled.div`
         .btn-upimage{
             height: 30px;
             width: 30px;
+        }
+        .mobile-text{
+            display: block;
         }
     }
     @media screen and (max-width: 860px) {
@@ -114,14 +130,17 @@ export const StyledHandDraws = styled.div`
         grid-template-columns: repeat(1, 1fr); 
         }
         .item-text{
-            font-size: 24px;
+            font-size: 16px;
         }
         .headtext{
         font-size:24px;
         }
+        .mobile-text{
+            display: block;
+        }
     }
 
-    `;
+`;
 
     const HandDraws = () => {
 
@@ -148,18 +167,18 @@ export const StyledHandDraws = styled.div`
         useEffect(() => {
             loadfromdb()
             }, [])
-        console.log(state)
 
         return (
             <StyledHandDraws>
-                <p className="headtext">Hand Job</p>
+                <p className="headtext">Рисунок от руки</p>
                 <div className="grid ">
                 {(!state)?( <div>loading...</div>
                 ):(
-                    state.proj.map((data,i) =>(
+                    state.proj.slice(0).reverse().map((data,i) =>(<div>
                         <div key={i} className="grid__item" style={{backgroundImage: `url(${data.tumb })`}}>
-                            <NavLink to ={`/handdraws/${i}`} className="item-text"> { data.headtext } </NavLink>
+                            <NavLink to ={`/handdraws/${(state.proj.length - 1) - i}`} className="item-text"> { data.headtext } </NavLink>
                         </div>
+                        <p className="mobile-text"> { data.headtext }</p></div>
                     )))}
                 </div>
                 <Totopbtn />

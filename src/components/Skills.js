@@ -12,29 +12,33 @@ export const StyledSkills = styled.div`
     width: 100%;
 
     .headtext{
-        margin: 40px 45px;
-        font-size:36px;
+        margin-top: 67px;
+        margin-bottom: 47px;
+        margin-left: 40px;
+        font-size:26px;
         font-weight: 500;
+        text-transform: uppercase;
     }
-    /* .box{
-        display: flex;
-        width: 100%;
-    } */
     .grid { 
         display: grid;
         grid-gap: 30px;
         width: 100%;
-        padding:0 60px 20px 60px;
-        grid-template-columns: repeat(10 , 1fr);
+        padding:0 35% 47px 35%;
+        grid-template-columns: repeat(5 , 1fr);
     }
     .grid__item {
+        align-self: center;
         height: 0;
         padding-bottom: 100%;
     }
     .textbox{
+        margin-top: 15px;
+        column-count: 2;
+        column-width: 40%;
+        column-gap: 90px;
         width: 100%;
-        text-align: center;
-        padding: 0 10px;
+        padding: 0 40px;
+
     }
     .skillimg{
         max-width: 100%;
@@ -52,9 +56,15 @@ export const StyledSkills = styled.div`
     .progress-bar{
         background-color: gray;
     }
-    @media screen and (max-width: 1340px) { 
+    @media screen and (max-width: 1367px) { 
         .grid {
-            /* width: 37vw; */
+            padding:0 32% 47px 32%;
+        }
+        .teaxtarea{
+            font-size: 14px;
+        }
+        .textbox{
+            font-size: 14px;
         }
     }
     @media screen and (max-width: 1040px) { 
@@ -62,6 +72,11 @@ export const StyledSkills = styled.div`
         .headtext{
             padding: 15px;
             margin:0;
+        }
+    }
+    @media screen and (max-width: 740px) { 
+        .grid {
+            padding:0 25% 20px 25%;
         }
     }
     @media screen and (max-width: 540px) {
@@ -74,8 +89,10 @@ export const StyledSkills = styled.div`
         }
         .textbox{
             width: 100%;
-            font-size: 12px;
             text-align: left;
+            column-gap: unset;
+            column-count: unset;
+            padding: 15px;
         }
     }
 `;
@@ -111,7 +128,7 @@ const Skills = () => {
 
     return (
         <StyledSkills>
-            <p className="headtext">Skills</p>
+            <p className="headtext">Навыки</p>
             <div className="box" >
                 <div className="grid gridbox">
                 {(!state)?( <div>loading...</div>
@@ -127,7 +144,7 @@ const Skills = () => {
                     {(!state)?( <div>loading...</div>
                         ):(
                             state.text.map((data,i) =>(
-                                <p>{data}</p>
+                                <p>● {data}</p>
                             )))}
                 </div>  
             </div>

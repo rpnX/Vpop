@@ -17,6 +17,9 @@ export const StyledCarusel = styled.div`
         background-size: cover;
         background-position: center;
     }
+    .carousel-inner{
+        background-color: #f5f5f5!important;
+    }
     .item-text{
         opacity: 0.5;
         position: absolute;
@@ -34,6 +37,10 @@ export const StyledCarusel = styled.div`
     }
     .d-flex{
         background-position: center;
+    }
+    .powered{
+        margin: 7px;
+        font-size:10px;
     }
 
     @media screen and (max-width: 1040px) {
@@ -72,7 +79,6 @@ const  Carousel = () => {
     useEffect(() => {
         loadfromdb()
         }, [])
-        console.log(state)
 
 
         return (
@@ -109,7 +115,7 @@ const  Carousel = () => {
                     <span className="sr-only">Next</span>
                 </a>
             </div>)}
-            <p>wekfgieughfiuegt</p>
+            <a className="powered" href="https://vk.com/shyiski" target="_blank" style={{position: 'absolute', textDecoration: 'none', color: 'black', cursor: 'pointer', right: '0'}}>powered by rpnX</a>
             </StyledCarusel>
             
         );

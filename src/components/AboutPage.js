@@ -15,48 +15,110 @@ export const StyledAbout = styled.div`
         max-width: 100%;
     }
     .headtext{
-        max-width: 100%;
-        margin: 40px 45px;
-        font-size: 36px;
+        margin-top: 67px;
+        margin-bottom: 47px;
+        /* margin-left: 40px; */
+        font-size:26px;
         font-weight: 500;
+        text-transform: uppercase;
     }
     .grid {
         width: 100%;
         display: grid;
-        grid-gap: 20px;
-        padding: 20px;
-        grid-template-columns: 4fr 3fr; 
+        grid-gap: 90px;
+        padding: 0 40px;
+        grid-template-columns: repeat(2, 1fr);
     }
-    .teaxtarea{
-        font-size: 14px;
-    }
-    .skillhead{
+    .text{
+        margin-bottom: 0;
         font-size: 16px;
     }
-    .aboutphoto{
+    .citatabox{
+        position: relative;
+        padding: 28px 30px 20px 30px;
+
+    }
+    .qote{
+        text-align: center;
+        color: #222;
+        font-family: Georgia;
+        font-size: 70px;
+        margin-bottom: 0px;
+        line-height: 0.4;
+        }
+    .citatatext{
+        text-align: justify;
+        margin-bottom: 24px;
+    }
+    .citataauthor{
+        font-size: 12px;
+    }
+    .skillhead{
+        font-weight: 600;
+        font-size: 16px;
+    }
+    .photo{
         height: auto;
         max-width: 100%;
+        margin-bottom: 20px;
+    }
+    .photo2{
+            margin-top: 77px;
+        }
+
+    @media screen and (max-width: 1367px) {
+        .text{
+            font-size: 14px;
+        }
     }
 
     @media screen and (max-width: 1040px) {
         margin: 0;
         .headtext{
-            padding: 15px;
+            padding: 15px 0;
             margin:0;
         }
     }
     @media screen and (max-width: 930px) {
         .grid {
-        grid-template-columns: 1fr; 
+            grid-template-columns: 1fr;
+            grid-gap: 0;
         }
         .aboutphoto{
-        max-width: 100%;
+            max-width: 100%;
         }
+        .citatabox{
+        position: relative;
+        padding: 35px 35px 25px 35px;
     }
+        .qote{
+            color: #222;
+            font-family: Georgia;
+            font-size: 70px;
+            line-height: 0.4;
+        }
+        .photo{
+            margin-bottom: 10px;
+        }
+        .photo2{
+            margin-top: 10px;
+        }
+        .citatatext{
+        margin-bottom: unset;
+    }
+
+    }
+
     @media screen and (max-width: 460px) {
         .headtext{
         font-size:24px;
         }
+        .teaxtarea{
+            font-size: 16px;
+        }
+        .grid {
+            padding: 0 15px;
+    }
     }
 
 `;
@@ -87,43 +149,61 @@ const AboutPage = () => {
     useEffect(() => {
         loadfromdb()
         }, [])
-        console.log(state)
 
     return (
         <StyledAbout>
-            <p className="headtext">Обо мне</p>
+            
             {(!state)?( <div className="loadingdiv"><a className="item-text">loading...</a></div>
                 ):(
                 <div className="grid">
-                    <div className="griditem teaxtarea">
-                        <p>
-                            {state.deviz}
-                        </p>
-                        <p>
-                            <h5 className="skillhead">ДОСТИЖЕНИЯ:</h5>
-                            {state.dostizeniya}
-                        </p>
+                    <div className="griditem">
+                        <p className="headtext">Обо мне</p>
                         <p>
                             <h5 className="skillhead">КАРЬЕРА:</h5>
-                            {state.cariera}
+                            {state.cariera.map((data,i) =>( 
+                                    <p className="text">{data}</p>
+                            ))}
                         </p>
                         <p>
                             <h5 className="skillhead">ОБРАЗОВАНИЕ:</h5>
-                            {state.obrazovanie}
+                            {state.obrazovanie.map((data,i) =>( 
+                                    <p className="text">{data}</p>
+                            ))}
                         </p>
                         <p>
                             <h5 className="skillhead">Дополнительное образование:</h5>
-                            {state.dopobrazovanie}
-                        </p>
+                            {state.dopobrazovanie.map((data,i) =>( 
+                                    <p className="text">{data}</p>
+                            ))}
+                        </p> 
+
                         <p>
                             <h5 className="skillhead">Стажировки:</h5>
-                            {state.stazirovki}
+                            {state.stazirovki.map((data,i) =>( 
+                                    <p className="text">{data}</p>
+                            ))}
                         </p>
+                        <img className="photo photo1" src={state.photo1} alt="aboutpage"></img>
+
                     </div>
                     <div className="griditem">
-                        <img className="aboutphoto" src={state.img} alt="aboutpage"></img>   
+
+                        <img className="photo photo2" src={state.photo2} alt="aboutpage"></img>
+                        <div className="citatabox" >
+                            <div className="qote" >“</div>
+                            <div className="citatatext" >{state.citata1}</div>
+                            <div className="citataauthor"></div>
+                        </div>
+                        <p>
+                            <h5 className="skillhead">ДОСТИЖЕНИЯ:</h5>
+                                {state.dostizeniya.map((data,i) =>( 
+                                    <p className="text">{data}</p>
+                            ))}
+                        </p>
+                        {/* <img className="photo photo1" src={state.photo1} alt="aboutpage"></img>   */}
                     </div>
-                </div>)}
+                </div>
+            )}
         </StyledAbout>
     );
 }

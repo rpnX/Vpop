@@ -11,15 +11,16 @@ export const StyledTest = styled.div`
     width: 100%;
     
     .headtext{
-        margin: 40px 45px;
-        font-size: 36px;
+        margin-top: 67px;
+        margin-left: 45px;
+        margin-bottom: 10px;
+        font-size: 26px;
         font-weight: 500;
-        text-align: center;
         max-width: 100%;
+        text-transform: uppercase;
         word-wrap: break-word;
     }
     .text{
-        text-align: center;
         max-width: 100%;
         word-wrap: break-word;
         padding: 0 45px;
@@ -73,8 +74,6 @@ const Test = ( props ) => {
     useEffect(() => {
         loadfromdb()
         }, [])
-    
-        console.log(state)
 
     return (
         <>
